@@ -1,4 +1,4 @@
-# Azure Projects and Labs
+# 🚀 Azure Projects and Labs
 
 This section of the repository is dedicated to Azure-based projects and labs, showcasing expertise in deploying and managing cloud resources, implementing Infrastructure as Code (IaC), and setting up advanced DevOps practices.
 
