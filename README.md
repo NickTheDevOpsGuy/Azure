@@ -5,12 +5,12 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
 ## 📂 Projects Overview
 
 ### 1. **Azure Kubernetes Service (AKS)**
-   - **Description:** A sample CI/CD pipeline built using GitHub Actions.
+   - **Description:** A sample Kubernetes project.
    - **Key Features:**
      - Automates testing, building, and deployment.
-     - Supports containerized applications (Docker).
+     - Supports containerized applications (Kubernetes).
      - Integrates with Kubernetes for deployments.
-   - **Technologies:** GitHub Actions, Docker, Kubernetes.
-   - **Repository:** [View Project](https://github.com/limeman40/devops-sample-projects/tree/develop/ci-cd-pipeline-project)
+   - **Technologies:** Kubernetes.
+   - **Repository:** [View Project](https://github.com/limeman40/devops-sample-projects/tree/develop/ci-cd-pipeline-project](https://github.com/limeman40/Azure/tree/develop/aks-lab)
 
 ---
