@@ -1,0 +1,6 @@
+# Ignore unnecessary files
+*.log
+*.bak
+*.tmp
+.kube/
+.idea/
