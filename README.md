@@ -2,15 +2,15 @@
 
 This section of the repository is dedicated to Azure-based projects and labs, showcasing expertise in deploying and managing cloud resources, implementing Infrastructure as Code (IaC), and setting up advanced DevOps practices.
 
-Contents
-	1.	Azure Kubernetes Service (AKS)
-	•	Setting up and managing Kubernetes clusters on Azure.
-	•	Labs and hands-on exercises.
-	2.	Infrastructure as Code (IaC)
-	•	Deploying Azure resources using Bicep and ARM templates.
-	3.	CI/CD Pipelines
-	•	Automating Azure resource deployments and application delivery using pipelines.
-	4.	Monitoring and Observability
-	•	Setting up monitoring solutions for Azure resources and applications.
-	5.	Azure Security
-	•	Implementing security best practices for Azure resources.
+## 📂 Projects Overview
+
+### 1. **Azure Kubernetes Service (AKS)**
+   - **Description:** A sample CI/CD pipeline built using GitHub Actions.
+   - **Key Features:**
+     - Automates testing, building, and deployment.
+     - Supports containerized applications (Docker).
+     - Integrates with Kubernetes for deployments.
+   - **Technologies:** GitHub Actions, Docker, Kubernetes.
+   - **Repository:** [View Project](https://github.com/limeman40/devops-sample-projects/tree/develop/ci-cd-pipeline-project)
+
+---
