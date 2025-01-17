@@ -11,6 +11,6 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
      - Supports containerized applications (Kubernetes).
      - Integrates with Kubernetes for deployments.
    - **Technologies:** Kubernetes.
-   - **Repository:** [View Project](https://github.com/limeman40/devops-sample-projects/tree/develop/ci-cd-pipeline-project](https://github.com/limeman40/Azure/tree/develop/aks-lab)
+   - **Repository:** [View Project](https://github.com/limeman40/Azure/tree/develop/aks-lab)
 
 ---
