@@ -1,0 +1,46 @@
+{
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json",
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 1,
+      "content": "# 🧠 Application Insights Monitoring Dashboard\nTrack telemetry from your FastAPI health checker app",
+      "name": "Text - Header"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "dependencies\n| where type == \"Http\"\n| summarize avg(duration) by target\n| order by avg_duration desc",
+        "size": 1,
+        "visualization": "linechart",
+        "chartSettings": {
+          "xAxis": "target",
+          "yAxis": "avg_duration"
+        }
+      },
+      "name": "📈 Average Duration per URL"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "dependencies\n| where resultCode startswith \"4\" or resultCode startswith \"5\"\n| project timestamp, target, resultCode, success",
+        "size": 1,
+        "visualization": "table"
+      },
+      "name": "🚨 Failed HTTP Checks (4xx/5xx)"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "customEvents\n| where name == \"URL Check Triggered\"\n| project timestamp, name, customDimensions",
+        "size": 1,
+        "visualization": "table"
+      },
+      "name": "📋 Custom Events"
+    }
+  ],
+  "isLocked": false
+}

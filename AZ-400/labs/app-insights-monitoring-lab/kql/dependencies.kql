@@ -1,0 +1,4 @@
+dependencies
+| where type == "Http"
+| project timestamp, target, resultCode, duration, success
+| order by timestamp desc

@@ -1,0 +1,4 @@
+dependencies
+| where type == "Http"
+| summarize avg(duration) by target
+| order by avg_duration desc

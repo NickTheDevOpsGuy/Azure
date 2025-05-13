@@ -1,0 +1,2 @@
+exceptions
+| summarize count() by bin(timestamp, 30m)

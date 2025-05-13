@@ -1,0 +1,3 @@
+exceptions
+| project timestamp, type, outerMessage, operation_Name
+| order by timestamp desc
