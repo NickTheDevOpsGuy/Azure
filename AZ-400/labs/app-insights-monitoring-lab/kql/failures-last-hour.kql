@@ -1,0 +1,3 @@
+exceptions
+| where timestamp > ago(1h)
+| summarize count() by outerMessage

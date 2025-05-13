@@ -1,0 +1,4 @@
+customEvents
+| where name == "URL Check Triggered"
+| project timestamp, name, customDimensions
+| order by timestamp desc

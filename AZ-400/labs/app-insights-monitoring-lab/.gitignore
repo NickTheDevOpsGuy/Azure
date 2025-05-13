@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# IDEs
+.vscode/
+.idea/
+
+# MacOS
+.DS_Store
+
+# Azure CLI output
+*.azcli
+*.log
+
+# Archives / Packaging
+*.zip
+*.tar.gz
+
+# FastAPI / Uvicorn reload artifacts
+*.db
+*.sqlite
+*.pid
+
+# Jupyter or notebook outputs
+.ipynb_checkpoints/
+
+# Terraform (if you later extend it)
+.terraform/
+terraform.tfstate*
+crash.log
+
+# VS Code debug history
+.history/

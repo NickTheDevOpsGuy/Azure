@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# 🚀 AZ-400 Lab Deployer: App Insights + Optional Web App
+set -e
+
+# 💡 Usage: ./deploy.sh dev true
+ENVIRONMENT="${1:-dev}"
+DEPLOY_WEB_APP="${2:-false}"
+RESOURCE_GROUP="NickClarkRG"
+LOCATION="eastus2"
+TEMPLATE="bicep/main.bicep"
+DEPLOY_NAME="ai-monitoring-${ENVIRONMENT}-deploy"
+
+APP_INSIGHTS_NAME="appinsights-${ENVIRONMENT}-nick"
+WEB_APP_NAME="insightswebapp-${ENVIRONMENT}-nick"
+
+echo "📦 Deploying to environment: $ENVIRONMENT"
+echo "🌐 Web App deploy enabled: $DEPLOY_WEB_APP"
+
+# 🔨 Run Bicep deployment
+az deployment group create \
+  --resource-group "$RESOURCE_GROUP" \
+  --name "$DEPLOY_NAME" \
+  --template-file "$TEMPLATE" \
+  --parameters environment="$ENVIRONMENT" deployWebApp="$DEPLOY_WEB_APP" location="$LOCATION"
+
+# 🔍 Extract App Insights outputs
+echo "📥 Extracting output values..."
+
+CONN_STRING=$(az deployment group show \
+  --resource-group "$RESOURCE_GROUP" \
+  --name "$DEPLOY_NAME" \
+  --query "properties.outputs.appInsightsConnectionString.value" -o tsv)
+
+INSTRUMENTATION_KEY=$(az deployment group show \
+  --resource-group "$RESOURCE_GROUP" \
+  --name "$DEPLOY_NAME" \
+  --query "properties.outputs.appInsightsInstrumentationKey.value" -o tsv)
+
+# 🧪 Write .env file
+echo "🔑 Writing App Insights connection info to app/.env..."
+cat <<EOF > app/.env
+APPINSIGHTS_INSTRUMENTATIONKEY=${INSTRUMENTATION_KEY}
+APPLICATIONINSIGHTS_CONNECTION_STRING=${CONN_STRING}
+EOF
+
+echo "✅ Deployment complete."
+echo "📄 app/.env is ready for local testing."
+
+# 🌐 URLs
+echo ""
+echo "🔗 Access your Azure resources here:"
+echo "📊 Application Insights Logs:"
+echo "👉 https://portal.azure.com/#view/HubsExtension/BrowseResource/resourceType/microsoft.insights%2Fcomponents"
+echo ""
+echo "📈 Workbooks (Azure Monitor):"
+echo "👉 https://portal.azure.com/#blade/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/workbooks"
+echo ""
+
+if [[ "$DEPLOY_WEB_APP" == "true" ]]; then
+  echo "🌐 Deployed Web App:"
+  echo "👉 https://${WEB_APP_NAME}.azurewebsites.net/docs"
+fi
