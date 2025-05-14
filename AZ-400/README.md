@@ -12,17 +12,19 @@ This folder contains hands-on labs, documentation, study checklists, and notes t
 Realistic, exam-aligned DevOps labs with full code, YAML pipelines, and Azure integration.
 
 - `app-insights-monitoring-lab/` – Monitor applications with Application Insights + KQL
-- `azure-boards-work-items-lab/` – Track work with Boards, queries, and dashboards
-- `multi-stage-pipeline-lab/` – CI/CD pipeline using YAML, approvals, and secure variables
-- `source-control-strategy-lab/` – Repo branching, PR enforcement, and Git policies
+- `lab-1-monitoring-storage/` – A sample Kubernetes project
+- `lab-2-storage-private-endpoint/` – Deploys a Storage Account with a Private Endpoint and Private DNS Zone for secure access.
+- `lab-3-keyvault-secert/` – Deploys an Azure Key Vault with a sample secret and access policies for secure management.
+- `lab-4-terraform-rg/` – Deploys an Azure Resource Group, Storage Account, and Log Analytics Workspace using Terraform.
 
 ### 📝 `docs/`
 Reference guides, usage walkthroughs, and key exam topics explained clearly.
 
 - `dashboards-metrics.md` – What metrics to track, and how to visualize them
-- `work-items-demo.md` – Creating, querying, and automating Azure Boards
-- `app-insights-guide.md` – Deep dive on Application Insights + telemetry setup
-- `branching-strategy.md` – Comparing GitFlow vs trunk-based in DevOps
+- `lab-1-monitoring-storage.md` – A sample Kubernetes project
+- `lab-2-storage-private-endpoint.md` – Deploys a Storage Account with a Private Endpoint and Private DNS Zone for secure access.
+- `lab-3-keyvault-secert.md` – Deploys an Azure Key Vault with a sample secret and access policies for secure management.
+- `lab-4-terraform-rg.md` – Deploys an Azure Resource Group, Storage Account, and Log Analytics Workspace using Terraform.
 
 ### ✅ `checklists/`
 High-impact checklists to track your progress and reinforce exam readiness.
