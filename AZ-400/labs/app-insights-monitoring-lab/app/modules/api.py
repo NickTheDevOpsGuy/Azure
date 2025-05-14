@@ -5,7 +5,7 @@ def create_app() -> FastAPI:
     app = FastAPI(title="Modular App Insights Lab")
 
     @app.get("/")
-    def read_root():
+    def root():
         return {"message": "Hello from Modular FastAPI!"}
 
     @app.get("/metrics")
