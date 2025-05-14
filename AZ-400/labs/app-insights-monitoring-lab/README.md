@@ -100,14 +100,11 @@ curl -X POST http://localhost:8000/check \
 If deployWebApp=true in your Bicep deployment:
 
 ```bash
-cd app/
-zip -r ../app.zip . -x "*.pyc" -x "__pycache__/*" -x ".venv/*"
-az webapp deploy \
-  --resource-group NickClarkRG \
+az webapp up \
   --name insightswebapp-dev-nick \
-  --src-path app.zip \
-  --type zip \
-  --clean
+  --resource-group NickClarkRG \
+  --location eastus2 \
+  --runtime "PYTHON:3.11"
 ```
 
 Access your app at:
@@ -146,8 +143,6 @@ To visualize logs and metrics in a reusable dashboard:
 - [📘 Application Insights Overview](https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview)
 - [📗 KQL Query Language Reference](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/)
 - [📙 Azure Monitor Workbooks](https://learn.microsoft.com/en-us/azure/azure-monitor/workbooks/workbooks-overview)
-
----
 
 ---
 

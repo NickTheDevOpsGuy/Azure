@@ -73,7 +73,6 @@ if [[ "$DEPLOY_WEB_APP" == "true" ]]; then
     --resource-group "$RESOURCE_GROUP" \
     --location "$LOCATION" \
     --runtime "PYTHON:3.11" \
-    --quiet
 
   echo "🌐 FastAPI Web App is LIVE at:"
   echo "👉 https://${WEB_APP_NAME}.azurewebsites.net/docs"
