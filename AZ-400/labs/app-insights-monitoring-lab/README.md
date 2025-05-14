@@ -101,7 +101,7 @@ If deployWebApp=true in your Bicep deployment:
 
 ```bash
 cd app/
-zip -r app.zip *
+zip -r ../app.zip . -x "*.pyc" -x "__pycache__/*" -x "*.DS_Store" -x "*.git*" -x "*.venv*" -x "tests/*"
 az webapp deploy \
   --resource-group NickClarkRG \
   --name insightswebapp-dev-nick \
