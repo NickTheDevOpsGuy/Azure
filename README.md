@@ -13,7 +13,7 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
      - Supports containerized applications (Kubernetes).
      - Integrates with Kubernetes for deployments.
    - **Technologies:** Kubernetes.
-   - **Repository:** [View Project](./aks-lab)
+   - **Repository:** [View Project](./AZ-400/labs/aks-lab)
 
 ---
 
