@@ -3,21 +3,30 @@
 # 🚀 AZ-400 Lab Deployer: App Insights + Optional Web App
 set -e
 
-# 💡 Usage: ./deploy.sh dev true
-ENVIRONMENT="${1:-dev}"
-DEPLOY_WEB_APP="${2:-false}"
-RESOURCE_GROUP="NickClarkRG"
-LOCATION="eastus2"
+# 💡 Usage: ./deploy.sh <environment> <deploy_web_app:true|false> <resource_group> <location>
+if [ $# -lt 4 ]; then
+  echo "❌ Missing arguments."
+  echo "📘 Usage: ./deploy.sh <environment> <deploy_web_app:true|false> <resource_group> <location>"
+  echo "🔁 Example: ./deploy.sh dev true NickClarkRG eastus"
+  exit 1
+fi
+
+ENVIRONMENT="$1"
+DEPLOY_WEB_APP="$2"
+RESOURCE_GROUP="$3"
+LOCATION="$4"
+
 TEMPLATE="bicep/main.bicep"
 DEPLOY_NAME="ai-monitoring-${ENVIRONMENT}-deploy"
-
 APP_INSIGHTS_NAME="appinsights-${ENVIRONMENT}-nick"
 WEB_APP_NAME="insightswebapp-${ENVIRONMENT}-nick"
 
 echo "📦 Deploying to environment: $ENVIRONMENT"
 echo "🌐 Web App deploy enabled: $DEPLOY_WEB_APP"
+echo "🗂️ Resource Group: $RESOURCE_GROUP"
+echo "📍 Location: $LOCATION"
 
-# 🔨 Run Bicep deployment
+# 🔨 Deploy Bicep template
 az deployment group create \
   --resource-group "$RESOURCE_GROUP" \
   --name "$DEPLOY_NAME" \
@@ -49,15 +58,15 @@ echo "📄 app/.env is ready for local testing."
 
 # 🌐 URLs
 echo ""
-echo "🔗 Access your Azure resources here:"
+echo "🔗 Access your Azure resources:"
 echo "📊 Application Insights Logs:"
 echo "👉 https://portal.azure.com/#view/HubsExtension/BrowseResource/resourceType/microsoft.insights%2Fcomponents"
 echo ""
-echo "📈 Workbooks (Azure Monitor):"
+echo "📈 Azure Monitor Workbooks:"
 echo "👉 https://portal.azure.com/#blade/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/workbooks"
 echo ""
 
 if [[ "$DEPLOY_WEB_APP" == "true" ]]; then
-  echo "🌐 Deployed Web App:"
+  echo "🌐 Deployed Python Web App:"
   echo "👉 https://${WEB_APP_NAME}.azurewebsites.net/docs"
 fi
