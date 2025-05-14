@@ -26,7 +26,7 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
      - Azure Monitor integration.
      - Full Infrastructure as Code (Bicep).
    - **Technologies:** Azure Storage, Azure Monitor, Log Analytics, Bicep.
-   - **Repository:** [View Lab](./lab-1-monitoring-storage/)
+   - **Repository:** [View Lab](./AZ-400/labs/lab-1-monitoring-storage/)
 
 ---
 
@@ -37,7 +37,7 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
      - DNS Zone integration.
      - Fully automated via Bicep and bash scripts.
    - **Technologies:** Private Link, VNet, DNS, Bicep.
-   - **Repository:** [View Lab](./lab-2-storage-private-endpoint/)
+   - **Repository:** [View Lab](./AZ-400/labs/lab-2-storage-private-endpoint/)
 
 ---
 
@@ -48,7 +48,7 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
      - Identity and Access Management (IAM) integration.
      - Full Infrastructure as Code (Bicep).
    - **Technologies:** Key Vault, Azure AD, Secrets, Bicep.
-   - **Repository:** [View Lab](./lab-3-keyvault-secret/)
+   - **Repository:** [View Lab](./AZ-400/labs/lab-3-keyvault-secret/)
 
 ---
 
@@ -59,7 +59,7 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
      - Automated deploy/destroy/reset scripts.
      - Clean DevOps automation with scripts.
    - **Technologies:** Terraform, Azure CLI, Azure Storage, Log Analytics.
-   - **Repository:** [View Lab](./lab-4-terraform-rg-storage-monitoring/)
+   - **Repository:** [View Lab](./AZ-400/labs/lab-4-terraform-rg-storage-monitoring/)
 
 ---
 
