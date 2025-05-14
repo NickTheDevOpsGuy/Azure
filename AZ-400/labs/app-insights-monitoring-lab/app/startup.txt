@@ -1,1 +1,1 @@
-gunicorn main:app --bind=0.0.0.0
+gunicorn main:app --bind=0.0.0.0 --access-logfile - --log-level debug

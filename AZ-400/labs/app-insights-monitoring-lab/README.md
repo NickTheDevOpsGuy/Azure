@@ -27,15 +27,15 @@ You'll deploy a FastAPI app that tracks custom events, errors, and dependency ca
 app-insights-monitoring-lab/
 ├── app/
 │   ├── main.py                      # FastAPI app entrypoint
-│   ├── requirements.txt             # Python dependencies
-│   ├── startup.txt                  # Tell Azure how to start the python app
+│   ├── requirements.txt             # includes opencensus-ext-azure, gunicorn, etc.
+│   ├── startup.txt                  # contains: gunicorn main:app --bind=0.0.0.0
 │   ├── .env                         # Populated via deploy.sh
 │   ├── models/
-│   │   └── request.py               # Pydantic model for URL input
+│   │   └── api.py                   # contains create_app() and all routes
 │   ├── services/
-│   │   └── checker.py               # Logic for URL health checks
+│   │   └── metrics_service.py       # Logic for URL health checks
 │   └── telemetry/
-│       └── insights.py              # App Insights telemetry setup
+│       └── insights.py              # contains setup_telemetry(app: FastAPI)
 ├── bicep/
 │   └── main.bicep                   # Deploys App Insights + Log Analytics
 ├── kql/
@@ -101,7 +101,7 @@ If deployWebApp=true in your Bicep deployment:
 
 ```bash
 cd app/
-zip -r ../app.zip . -x "*.pyc" -x "__pycache__/*" -x "*.DS_Store" -x "*.git*" -x "*.venv*" -x "tests/*"
+zip -r ../app.zip . -x "*.pyc" -x "__pycache__/*" -x ".venv/*"
 az webapp deploy \
   --resource-group NickClarkRG \
   --name insightswebapp-dev-nick \
