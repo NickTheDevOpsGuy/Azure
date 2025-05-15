@@ -45,10 +45,6 @@ app-insights-monitoring-lab/
 ├── workbook/
 │   ├── insights-monitoring-workbook.json  # Azure Monitor dashboard JSON
 │   └── README.md                    # How to use the workbook
-├── visuals/
-│   ├── dashboard-preview.png        # Dashboard screenshot
-│   ├── logs-sample.png              # Logs UI screenshot
-│   └── kql-query-preview.png        # KQL result screenshot
 ├── deploy.sh                        # Deploys infra + exports connection strings
 ├── cleanup.sh                       # Deletes all deployed resources
 ├── .gitignore                       # Clean ignores for Python, VSCode, etc.
