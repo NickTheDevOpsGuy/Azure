@@ -21,8 +21,6 @@ You'll deploy a FastAPI app that tracks custom events, errors, and dependency ca
 
 ## 📁 Folder Structure
 
-## 📁 Folder Structure
-
 ```plaintext
 app-insights-monitoring-lab/
 ├── app/
