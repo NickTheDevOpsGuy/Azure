@@ -1,19 +1,7 @@
-from fastapi import FastAPI
-from services.metrics_service import get_metrics
+from fastapi import APIRouter
 
-def create_app() -> FastAPI:
-    app = FastAPI(title="Modular App Insights Lab")
+router = APIRouter()
 
-    @app.get("/")
-    def root():
-        return {"message": "Hello from Modular FastAPI!"}
-
-    @app.get("/metrics")
-    def metrics():
-        return get_metrics()
-
-    @router.get("/health")
-    def health_check():
-        return {"status": "ok"}
-
-    return app
+@router.get("/hello")
+def hello_world():
+    return {"message": "Hello from modules.routes!"}

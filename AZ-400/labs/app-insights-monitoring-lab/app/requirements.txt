@@ -6,3 +6,4 @@ opencensus-ext-azure==1.1.9
 opencensus-context==0.1.3
 python-dotenv==1.0.1
 gunicorn==21.2.0
+prometheus-fastapi-instrumentator==7.1.0
