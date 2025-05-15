@@ -1,0 +1,65 @@
+# azure-pipelines.yml
+trigger:
+  branches:
+    include:
+      - develop
+
+variables:
+  pythonVersion: '3.11'
+
+stages:
+  - stage: Build
+    displayName: "🛠️ Build & Test"
+    jobs:
+      - job: BuildAndTest
+        displayName: "Run Tests + Publish Results"
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '$(pythonVersion)'
+
+          - script: |
+              python -m pip install --upgrade pip
+              pip install -r app/requirements.txt
+              pip install pytest pytest-cov
+            displayName: "Install dependencies"
+
+          - script: |
+              pytest tests/ --junitxml=test-results.xml --cov=app --cov-report=xml
+            displayName: "Run tests and collect coverage"
+
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFiles: '**/test-results.xml'
+              testRunTitle: 'FastAPI Test Results'
+
+          - task: PublishCodeCoverageResults@1
+            inputs:
+              codeCoverageTool: 'Cobertura'
+              summaryFileLocation: 'coverage.xml'
+              reportDirectory: '$(System.DefaultWorkingDirectory)'
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: 'app'
+              ArtifactName: 'drop'
+              publishLocation: 'Container'
+
+  - stage: Deploy_Dev
+    displayName: "🚀 Deploy to Dev"
+    dependsOn: Build
+    condition: succeeded()
+    jobs:
+      - job: DeployDev
+        displayName: "Deploy to Azure Web App (Dev)"
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - task: AzureWebApp@1
+            inputs:
+              azureSubscription: 'YourServiceConnectionName'
+              appType: 'webApp'
+              appName: 'fastapi-dev'
+              package: '$(Pipeline.Workspace)/drop'
