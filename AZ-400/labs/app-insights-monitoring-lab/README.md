@@ -32,8 +32,6 @@ app-insights-monitoring-lab/
 │   ├── .env                         # Populated via deploy.sh
 │   ├── models/
 │   │   └── api.py                   # contains create_app() and all routes
-│   ├── services/
-│   │   └── metrics.py       # Logic for URL health checks
 │   └── telemetry/
 │       └── insights.py              # contains setup_telemetry(app: FastAPI)
 ├── bicep/

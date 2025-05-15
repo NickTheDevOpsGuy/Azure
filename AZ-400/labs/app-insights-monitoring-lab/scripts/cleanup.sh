@@ -1,45 +1,30 @@
 #!/bin/bash
 
-# -------------------------------
-# 💣 AZ-400 App Insights Cleanup
-# -------------------------------
-
+# 🧼 Cleanup Script: Destroys all resources in a given Azure Resource Group
 set -e
 
-RESOURCE_GROUP="NickClarkRG"
-ENVIRONMENT="${1:-dev}"
-LOCATION="eastus2"
+RESOURCE_GROUP="$1"
 
-APP_INSIGHTS_NAME="appinsights-${ENVIRONMENT}-nick"
-LOG_ANALYTICS_NAME="log-${ENVIRONMENT}-nick"
-WEB_APP_NAME="insightswebapp-${ENVIRONMENT}-nick"
-APP_PLAN_NAME="asp-${ENVIRONMENT}-nick"
+# 🆘 Help text
+if [[ "$1" == "--help" || "$1" == "-h" || -z "$RESOURCE_GROUP" ]]; then
+  echo -e "🧽 Usage: ./cleanup.sh <resource-group-name>"
+  echo -e "   💡 This will DELETE ALL resources in the specified resource group"
+  echo -e "   🛑 Example: ./cleanup.sh my-devops-rg"
+  exit 0
+fi
 
-echo "⚠️  This will delete all resources created by the App Insights Monitoring Lab for environment: ${ENVIRONMENT}"
-read -p "Continue? (y/n): " CONFIRM
+echo "🧹 Starting cleanup of resource group: $RESOURCE_GROUP"
 
-if [[ "$CONFIRM" != "y" ]]; then
-  echo "❌ Aborted."
+# Check if the resource group exists
+if ! az group show --name "$RESOURCE_GROUP" &>/dev/null; then
+  echo "❌ Resource group '$RESOURCE_GROUP' does not exist in your current subscription"
   exit 1
 fi
 
-echo "🧹 Deleting Web App..."
-az webapp delete --name "$WEB_APP_NAME" --resource-group "$RESOURCE_GROUP" || echo "🔸 Web App not found or already deleted."
+# Delete the resource group
+echo "⚠️  Deleting resource group: $RESOURCE_GROUP ..."
+az group delete --name "$RESOURCE_GROUP" --yes --no-wait
 
-echo "🧹 Deleting App Service Plan..."
-az appservice plan delete --name "$APP_PLAN_NAME" --resource-group "$RESOURCE_GROUP" --yes || echo "🔸 App Service Plan not found or already deleted."
-
-echo "🧹 Deleting Application Insights..."
-az resource delete --ids $(az resource show \
-  --resource-group "$RESOURCE_GROUP" \
-  --name "$APP_INSIGHTS_NAME" \
-  --resource-type "Microsoft.Insights/components" \
-  --query id -o tsv) || echo "🔸 App Insights not found or already deleted."
-
-echo "🧹 Deleting Log Analytics Workspace..."
-az monitor log-analytics workspace delete \
-  --resource-group "$RESOURCE_GROUP" \
-  --workspace-name "$LOG_ANALYTICS_NAME" \
-  --yes || echo "🔸 Log Analytics workspace not found or already deleted."
-
-echo "✅ Cleanup complete."
+echo "✅ Deletion initiated. Check Azure Portal or run:"
+echo "   az group show --name $RESOURCE_GROUP"
+echo "   az group wait --deleted --name $RESOURCE_GROUP"
