@@ -1,84 +1,66 @@
 #!/bin/bash
 
-# 🚀 AZ-400 Lab Deployer: App Insights + Optional Web App (Oryx-Ready)
-set -e
+# 🚀 AZ-400 App Deployer with Oryx
+set -euo pipefail
 
-# 💡 Usage: ./deploy.sh <environment> <deploy_web_app:true|false> <resource_group> <location>
-if [ $# -lt 4 ]; then
+ENVIRONMENT="${1:-}"
+DEPLOY_WEB_APP="${2:-}"
+RESOURCE_GROUP="${3:-}"
+LOCATION="${4:-}"
+
+# 🛑 Validate inputs
+if [[ -z "$ENVIRONMENT" || -z "$DEPLOY_WEB_APP" || -z "$RESOURCE_GROUP" || -z "$LOCATION" ]]; then
   echo "❌ Missing arguments."
-  echo "📘 Usage: ./deploy.sh <environment> <deploy_web_app:true|false> <resource_group> <location>"
-  echo "🔁 Example: ./deploy.sh dev true NickClarkRG eastus"
+  echo "Usage: ./deploy.sh <environment> <web_app_name> <resource_group> <location>"
   exit 1
 fi
 
-ENVIRONMENT="$1"
-DEPLOY_WEB_APP="$2"
-RESOURCE_GROUP="$3"
-LOCATION="$4"
-
-TEMPLATE="bicep/main.bicep"
-DEPLOY_NAME="ai-monitoring-${ENVIRONMENT}-deploy"
-APP_INSIGHTS_NAME="appinsights-${ENVIRONMENT}-nick"
-LOG_ANALYTICS_NAME="log-${ENVIRONMENT}-nick"
-WEB_APP_NAME="insightswebapp-${ENVIRONMENT}-nick"
-
-echo "📦 Deploying to environment: $ENVIRONMENT"
-echo "🌐 Web App deploy enabled: $DEPLOY_WEB_APP"
-echo "🗂️ Resource Group: $RESOURCE_GROUP"
-echo "📍 Location: $LOCATION"
-
-# 🔧 Ensure Resource Group exists
-az group create --name "$RESOURCE_GROUP" --location "$LOCATION"
-
-# 🔨 Deploy Bicep template
-echo "🚀 Running Bicep deployment: $DEPLOY_NAME"
-az deployment group create \
-  --resource-group "$RESOURCE_GROUP" \
-  --name "$DEPLOY_NAME" \
-  --template-file "$TEMPLATE" \
-  --parameters \
-    environment="$ENVIRONMENT" \
-    deployWebApp="$DEPLOY_WEB_APP" \
-    location="$LOCATION" \
-    appInsightsName="$APP_INSIGHTS_NAME" \
-    logAnalyticsName="$LOG_ANALYTICS_NAME" \
-    webAppName="$WEB_APP_NAME" \
-  --verbose || { echo "❌ Deployment failed. Check Bicep template."; exit 1; }
-
-# 🔍 Extract App Insights outputs
-echo "📥 Extracting output values..."
-
-CONN_STRING=$(az deployment group show \
-  --resource-group "$RESOURCE_GROUP" \
-  --name "$DEPLOY_NAME" \
-  --query "properties.outputs.appInsightsConnectionString.value" -o tsv)
-
-INSTRUMENTATION_KEY=$(az deployment group show \
-  --resource-group "$RESOURCE_GROUP" \
-  --name "$DEPLOY_NAME" \
-  --query "properties.outputs.appInsightsInstrumentationKey.value" -o tsv)
-
-# 🧪 Write .env file
-echo "🔑 Writing App Insights connection info to .env..."
-cat <<EOF > .env
-APPINSIGHTS_INSTRUMENTATIONKEY=${INSTRUMENTATION_KEY}
-APPLICATIONINSIGHTS_CONNECTION_STRING=${CONN_STRING}
-EOF
-
-# 🔄 Deploy FastAPI app using Oryx (only if requested)
-if [[ "$DEPLOY_WEB_APP" == "true" ]]; then
-  echo "🚀 Deploying FastAPI app using Oryx (az webapp up)..."
-  az webapp up \
-    --name "$WEB_APP_NAME" \
-    --resource-group "$RESOURCE_GROUP" \
-    --location "$LOCATION" \
-    --runtime "PYTHON:3.11" \
-
-  echo "🌐 FastAPI Web App is LIVE at:"
-  echo "👉 https://${WEB_APP_NAME}.azurewebsites.net/docs"
+# 📦 Ensure you’re in project root and app/ folder exists
+if [[ ! -d "./app" ]]; then
+  echo "❌ Missing ./app directory. Please make sure your FastAPI project is in ./app"
+  exit 1
 fi
 
-echo ""
-echo "✅ Deployment complete."
-echo "📊 App Insights Logs:"
-echo "👉 https://portal.azure.com/#view/HubsExtension/BrowseResource/resourceType/microsoft.insights%2Fcomponents"
+echo "🔧 Setting subscription (if needed)..."
+az account show > /dev/null || az login
+
+echo "🧱 Creating resource group if it doesn’t exist..."
+az group create --name "$RESOURCE_GROUP" --location "$LOCATION" --output none
+
+# 💡 Web App names must be globally unique
+echo "🔍 Checking if app name '$DEPLOY_WEB_APP' is already taken..."
+EXISTING_APP=$(az webapp list --query "[?name=='$DEPLOY_WEB_APP'] | [0].name" -o tsv)
+
+if [[ -n "$EXISTING_APP" && "$EXISTING_APP" != "$DEPLOY_WEB_APP" ]]; then
+  echo "❌ App name '$DEPLOY_WEB_APP' is already taken globally. Choose a new unique name."
+  exit 1
+fi
+
+echo "📁 Changing into app directory..."
+pushd ./app > /dev/null
+
+echo "🚀 Deploying using Oryx (az webapp up)..."
+az webapp up \
+  --name "$DEPLOY_WEB_APP" \
+  --resource-group "$RESOURCE_GROUP" \
+  --location "$LOCATION" \
+  --runtime "PYTHON:3.10" \
+  --os-type Linux \
+  --output none
+
+popd > /dev/null
+
+echo "⌛ Waiting for app to respond..."
+APP_URL="https://${DEPLOY_WEB_APP}.azurewebsites.net"
+for i in {1..10}; do
+  STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$APP_URL")
+  echo "⏳ Attempt $i: HTTP $STATUS_CODE"
+  if [[ "$STATUS_CODE" == "200" ]]; then
+    echo "✅ App is live at: $APP_URL"
+    exit 0
+  fi
+  sleep 10
+done
+
+echo "❌ App failed to respond after deployment."
+exit 1

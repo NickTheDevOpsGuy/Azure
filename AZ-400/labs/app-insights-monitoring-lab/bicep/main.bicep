@@ -24,6 +24,9 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
     Application_Type: 'web'
     WorkspaceResourceId: logAnalytics.id
   }
+  dependsOn: [
+    logAnalytics
+  ]
 }
 
 resource hostingPlan 'Microsoft.Web/serverfarms@2023-01-01' = if (deployWebApp) {
