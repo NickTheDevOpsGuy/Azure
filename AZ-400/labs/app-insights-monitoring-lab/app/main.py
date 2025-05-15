@@ -1,8 +1,19 @@
 from fastapi import FastAPI
-from modules.api import create_app
-from telemetry.insights import setup_telemetry
+from prometheus_fastapi_instrumentator import Instrumentator
 
-app: FastAPI = create_app()
-setup_telemetry(app)
+# Local modules (update these based on your actual structure)
+from modules.routes import router as modules_router
+from services.api import router as services_router
+from telemetry.logging import configure_logging
 
-print("🔥 FastAPI app started and telemetry hooked.")
+app = FastAPI()
+
+# Setup logging, monitoring, etc.
+configure_logging()
+
+# Expose Prometheus metrics
+Instrumentator().instrument(app).expose(app)
+
+# Register routers
+app.include_router(modules_router)
+app.include_router(services_router)

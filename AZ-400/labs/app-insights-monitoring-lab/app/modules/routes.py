@@ -12,4 +12,8 @@ def create_app() -> FastAPI:
     def metrics():
         return get_metrics()
 
+    @router.get("/health")
+    def health_check():
+        return {"status": "ok"}
+
     return app

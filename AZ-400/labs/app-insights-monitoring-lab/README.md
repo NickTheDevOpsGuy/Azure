@@ -33,7 +33,7 @@ app-insights-monitoring-lab/
 │   ├── models/
 │   │   └── api.py                   # contains create_app() and all routes
 │   ├── services/
-│   │   └── metrics_service.py       # Logic for URL health checks
+│   │   └── metrics.py       # Logic for URL health checks
 │   └── telemetry/
 │       └── insights.py              # contains setup_telemetry(app: FastAPI)
 ├── bicep/
