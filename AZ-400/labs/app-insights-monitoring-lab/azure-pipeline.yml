@@ -1,8 +1,7 @@
-# azure-pipelines.yml
 trigger:
   branches:
     include:
-      - develop
+      - main
 
 variables:
   pythonVersion: '3.11'
@@ -59,7 +58,41 @@ stages:
         steps:
           - task: AzureWebApp@1
             inputs:
-              azureSubscription: 'YourServiceConnectionName'
+              azureSubscription: 'NickAzureResourceConnection'
               appType: 'webApp'
               appName: 'fastapi-dev'
+              package: '$(Pipeline.Workspace)/drop'
+
+  - stage: Deploy_Staging
+    displayName: "🚀 Deploy to Staging"
+    dependsOn: Deploy_Dev
+    condition: succeeded()
+    jobs:
+      - job: DeployStaging
+        displayName: "Deploy to Azure Web App (Staging)"
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - task: AzureWebApp@1
+            inputs:
+              azureSubscription: 'NickAzureResourceConnection'
+              appType: 'webApp'
+              appName: 'fastapi-staging'
+              package: '$(Pipeline.Workspace)/drop'
+
+  - stage: Deploy_Prod
+    displayName: "🚀 Deploy to Production"
+    dependsOn: Deploy_Staging
+    condition: succeeded()
+    jobs:
+      - job: DeployProd
+        displayName: "Deploy to Azure Web App (Production)"
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - task: AzureWebApp@1
+            inputs:
+              azureSubscription: 'NickAzureResourceConnection'
+              appType: 'webApp'
+              appName: 'fastapi-prod'
               package: '$(Pipeline.Workspace)/drop'

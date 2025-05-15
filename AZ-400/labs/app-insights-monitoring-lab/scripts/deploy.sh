@@ -62,5 +62,15 @@ for i in {1..10}; do
   sleep 10
 done
 
+echo "🔔 Deploying alert rules for App Insights resource: ${DEPLOY_WEB_APP}-appi"
+
+az deployment group create \
+  --resource-group "$RESOURCE_GROUP" \
+  --template-file "./alerts/alerts.bicep" \
+  --parameters environment="$ENVIRONMENT" \
+               location="$LOCATION" \
+               appInsightsName="${DEPLOY_WEB_APP}-appi" \
+               actionGroupEmail="nicholas.a.clark@outlook.com"
+
 echo "❌ App failed to respond after deployment."
 exit 1
