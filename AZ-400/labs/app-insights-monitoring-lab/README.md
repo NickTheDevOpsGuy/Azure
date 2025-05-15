@@ -105,6 +105,15 @@ az webapp up \
   --runtime "PYTHON:3.11"
 ```
 
+## ✅ Set the startup command:
+
+```bash
+az webapp config set \
+  --name insightswebapp-dev-nick \
+  --resource-group NickClarkRG \
+  --startup-file "gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app"
+```
+
 Access your app at:
 
 ```bash
