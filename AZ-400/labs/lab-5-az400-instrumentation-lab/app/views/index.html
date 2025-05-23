@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>AZ-400 Demo App</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>👋 Welcome to the AZ-400 Instrumentation Lab</h1>
+    <p>This app demonstrates Application Insights with Node.js.</p>
+
+    <ul>
+      <li><a href="/health">Check health status</a></li>
+      <li><a href="/custom-metric">Send custom metric</a></li>
+      <li><a href="/simulate-error">Trigger a fake error</a></li>
+    </ul>
+
+    <div class="telemetry-status">
+      <h2>🔍 Telemetry Routes</h2>
+      <ul>
+        <li><code>/</code> → Tracks <strong>HomePageVisited</strong> event</li>
+        <li><code>/health</code> → Sends <strong>HealthCheck</strong> metric</li>
+        <li><code>/simulate-error</code> → Triggers <strong>Exception</strong></li>
+        <li><code>/custom-metric</code> → Sends <strong>CustomLatency</strong> metric</li>
+      </ul>
+      <p>Open Azure Application Insights → Logs to query your data with KQL.</p>
+    </div>
+
+    <footer>
+      <p>#NickDoesDevOPS</p>
+    </footer>
+  </div>
+</body>
+</html>
