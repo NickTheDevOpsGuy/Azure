@@ -1,0 +1,4 @@
+exceptions
+| where timestamp > ago(1h)
+| summarize total_exceptions = count(), byType = count() by type
+| order by total_exceptions desc

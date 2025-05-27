@@ -1,0 +1,5 @@
+customMetrics
+| where name == "CustomLatency"
+| where timestamp > ago(1h)
+| project timestamp, value
+| order by timestamp desc

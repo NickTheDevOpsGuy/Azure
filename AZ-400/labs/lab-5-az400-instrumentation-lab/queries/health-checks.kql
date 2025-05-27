@@ -1,0 +1,3 @@
+customMetrics
+| where name == "HealthCheck"
+| summarize checks = count() by bin(timestamp, 15m)
