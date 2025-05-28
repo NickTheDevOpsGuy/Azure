@@ -53,17 +53,13 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
 ---
 
 ### 5. **📡 Lab 5: AZ-400 Instrumentation Lab – App Insights + Node.js**
-
-**Key Features:**
-- Tracks requests, exceptions, and dependencies
-- Supports both classic SDK and OpenTelemetry export
-- Prepares for integration with Azure Monitor alerts and dashboards
-
-**Technologies:**  
-Node.js · Express · Azure Application Insights · dotenv · Azure CLI
-
-**Repo:**  
-[lab-5-az400-instrumentation-lab](./AZ-400/labs/lab-5-az400-instrumentation-lab)
+   - **Description:** Add observability to a Node.js web app using Azure Application Insights. Tracks requests, failures, dependencies, and more for AZ-400 monitoring prep.
+   - **Key Features:**
+     - Tracks requests, exceptions, and dependencies.
+     - Supports both classic SDK and OpenTelemetry export.
+     - repares for integration with Azure Monitor alerts and dashboards.
+   - **Technologies:** Node.js · Express · Azure Application Insights · dotenv · Azure CLI
+   - **Repository:** [View Lab]((./AZ-400/labs/lab-5-az400-instrumentation-lab)
 
 ---
 
