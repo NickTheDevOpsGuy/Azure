@@ -52,14 +52,18 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
 
 ---
 
-### 5. **Lab 4: Resource Group + Storage + Monitoring (Terraform)**
-   - **Description:** Deploys an Azure Resource Group, Storage Account, and Log Analytics Workspace using Terraform.
-   - **Key Features:**
-     - Full Infrastructure as Code using Terraform HCL.
-     - Automated deploy/destroy/reset scripts.
-     - Clean DevOps automation with scripts.
-   - **Technologies:** Terraform, Azure CLI, Azure Storage, Log Analytics.
-   - **Repository:** [View Lab](./AZ-400/labs/lab-4-terraform-rg-storage-monitoring/)
+### 5. **📡 Lab 5: AZ-400 Instrumentation Lab – App Insights + Node.js**
+
+**Key Features:**
+- Tracks requests, exceptions, and dependencies
+- Supports both classic SDK and OpenTelemetry export
+- Prepares for integration with Azure Monitor alerts and dashboards
+
+**Technologies:**  
+Node.js · Express · Azure Application Insights · dotenv · Azure CLI
+
+**Repo:**  
+[lab-5-az400-instrumentation-lab](./AZ-400/labs/lab-5-az400-instrumentation-lab)
 
 ---
 
