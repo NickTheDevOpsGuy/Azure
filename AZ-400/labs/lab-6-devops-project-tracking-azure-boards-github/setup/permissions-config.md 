@@ -1,40 +1,51 @@
-# Project Title
+# 🔐 Permissions Configuration for Azure Boards + GitHub Integration
 
-## 📝 Description
-Brief description of what this project does and who it's for.
+This guide outlines the required permissions for a smooth integration between GitHub and Azure Boards.
 
-## 🚀 Getting Started
-- Clone the repo
-- Run `bicep build infra/main.bicep`
-- Deploy using Azure CLI or GitHub Actions
+---
 
-## 📁 Project Structure
-```plaintext
-.
-├── infra/
-│   ├── main.bicep
-│   └── modules/
-├── app/
-├── queries/
-└── README.md
-```
+## ✅ GitHub Permissions
 
-## 🔧 Tools Used
-- Azure Bicep
-- Application Insights
-- Log Analytics
+To successfully connect GitHub to Azure Boards:
 
-## 🙋‍♂️ About the Author
+### Personal GitHub Account
 
-Built with 💻 by [Nicholas Clark](https://www.linkedin.com/in/nickdoesdevops)
+- Must **authorize** Azure Boards to access your GitHub account.
+- Requires **write access to metadata and repositories** that contain your DevOps code.
+- You’ll be prompted to approve OAuth permissions during setup.
 
-- Follow the journey: #NickDoesDevOPS
+### GitHub Organization Repos
 
-🧠 #NickDoesDevOps
-🚀 #LearningInPublic
-🔧 #WorldDominations
+If connecting repos under an org:
 
-- GitHub: [NickTheDevOpsGuy](https://github.com/NickTheDevOpsGuy)
+- You must be:
+  - An **Owner** in the GitHub org, or
+  - Have **Admin** access to the specific repo.
+- Azure DevOps will request the **GitHub App installation** to link the org.
 
-## 📄 License
-MIT
+🔗 [GitHub App Permissions Reference](https://docs.github.com/en/apps/creating-github-apps/registering-a-github-app/choosing-permissions-for-a-github-app)
+
+---
+
+## 🔧 Azure DevOps Permissions
+
+To link GitHub and manage Boards:
+
+- Must be a **Project Administrator** or a team member with:
+  - **Edit project-level information**
+  - **Manage project properties**
+- Needed to configure service connections or repository links.
+
+---
+
+## 🔄 Best Practices
+
+- Use a **GitHub App connection** over OAuth for better security and audit logging.
+- Limit connection scope to only necessary repos.
+- Rotate or review permissions periodically for security.
+
+---
+
+🛠️ Once permission is granted, commits, PRs, and issues from GitHub will start linking directly to Azure Boards work items — provided the right AB# syntax is used.
+
+Need help? Ping your repo admin or DevOps lead 😅

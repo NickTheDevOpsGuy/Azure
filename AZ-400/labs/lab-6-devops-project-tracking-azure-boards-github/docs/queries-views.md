@@ -1,40 +1,64 @@
-# Project Title
+# 🔍 Queries & Views in Azure Boards
 
-## 📝 Description
-Brief description of what this project does and who it's for.
+This guide helps you set up smart queries and board views to track GitHub-linked work items effectively.
 
-## 🚀 Getting Started
-- Clone the repo
-- Run `bicep build infra/main.bicep`
-- Deploy using Azure CLI or GitHub Actions
+---
 
-## 📁 Project Structure
-```plaintext
-.
-├── infra/
-│   ├── main.bicep
-│   └── modules/
-├── app/
-├── queries/
-└── README.md
-```
+## 📋 Default Queries
 
-## 🔧 Tools Used
-- Azure Bicep
-- Application Insights
-- Log Analytics
+You can use built-in queries to track project progress, such as:
 
-## 🙋‍♂️ About the Author
+- **Assigned to Me** – Items you're responsible for
+- **Recently Created** – New work items in your project
+- **All Work Items** – Full list of work tracked in Azure Boards
 
-Built with 💻 by [Nicholas Clark](https://www.linkedin.com/in/nickdoesdevops)
+> Access from: **Boards → Queries → New Query**
 
-- Follow the journey: #NickDoesDevOPS
+---
 
-🧠 #NickDoesDevOps
-🚀 #LearningInPublic
-🔧 #WorldDominations
+## 🛠️ Custom Query Setup
 
-- GitHub: [NickTheDevOpsGuy](https://github.com/NickTheDevOpsGuy)
+To track GitHub-linked commits and pull requests:
 
-## 📄 License
-MIT
+### 🧩 Example: All GitHub-Linked Items
+
+| Field | Operator | Value |
+|-------|----------|-------|
+| **Tags** | Contains | `GitHub` |
+| **Work Item Type** | In | `User Story, Bug, Task` |
+| **State** | Not In | `Removed` |
+
+Save this query for filtering only GitHub-related items.
+
+---
+
+## 🎯 Example Views
+
+Create smart views on your Boards using custom queries:
+
+### 🗂️ “Backlog – GitHub Commits”
+- Add a query that filters work items with `AB#` commit links.
+- Use Kanban style to group by **State** or **Iteration Path**.
+
+### 🔄 “Recently Updated”
+- Filter by **Changed Date** in the last 7 days.
+- Great for standups or sprint reviews.
+
+---
+
+## ⛳ Pro Tips
+
+- Use **query folders** to organize views by release or milestone.
+- Add **charts** to your query results: pie charts, bar charts, etc.
+- Share views with your team or pin them to Dashboards.
+
+---
+
+🚀 Bonus:
+Once your commit includes `AB#123` syntax, the related Work Item auto-updates and appears in query results ✨
+
+> Check integration: **Boards → Queries → Run Query → Open Item → Links Tab**
+
+---
+
+Need help building a more complex WIQL query? Ping your local raccoon spirit guide 🦝
