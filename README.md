@@ -70,7 +70,7 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
      - Supports state transitions with keywords like Fixes and Resolves.
      - Includes board permission tips, query samples, and tracking views.
    - **Technologies:** Azure Boards · GitHub · DevOps Project Management · Markdown Docs
-   - **Repository:** [View Lab]((./AZ-400/labs/lab-6-devops-project-tracking-azure-boards-github)
+   - **Repository:** [View Lab](./AZ-400/labs/lab-6-devops-project-tracking-azure-boards-github)
 
 ---
 
