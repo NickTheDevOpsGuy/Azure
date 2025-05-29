@@ -59,7 +59,7 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
      - Supports both classic SDK and OpenTelemetry export.
      - repares for integration with Azure Monitor alerts and dashboards.
    - **Technologies:** Node.js · Express · Azure Application Insights · dotenv · Azure CLI
-   - **Repository:** [View Lab]((./AZ-400/labs/lab-5-az400-instrumentation-lab)
+   - **Repository:** [View Lab](./AZ-400/labs/lab-5-az400-instrumentation-lab)
 
 ---
 
