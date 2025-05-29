@@ -13,6 +13,7 @@ This lab demonstrates how to integrate GitHub with Azure Boards to track DevOps 
 
 📦 Repo Structure
 
+```plaintext
 lab-6-devops-project-tracking-azure-boards-github/
 ├── README.md
 ├── setup/
@@ -26,6 +27,7 @@ lab-6-devops-project-tracking-azure-boards-github/
 └── docs/
     ├── work-item-auto-linking.md
     └── queries-views.md
+```
 
 🔧 Prerequisites
 
