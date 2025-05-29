@@ -70,7 +70,7 @@ Create queries and dashboards:
 
 | Step | Description                                   | Image |
 |------|-----------------------------------------------|-------|
-| 1️⃣  | Azure DevOps Project Settings                 | ![Settings]([./assets/screenshots/01-settings-devops-project.png](https://github.com/NickTheDevOpsGuy/Azure/blob/develop/AZ-400/labs/lab-6-devops-project-tracking-azure-boards-github/assets/screenshots/01-project-overview.png]) |
+| 1️⃣  | Azure DevOps Project Settings                 | ![Settings](https://github.com/NickTheDevOpsGuy/Azure/blob/develop/AZ-400/labs/lab-6-devops-project-tracking-azure-boards-github/assets/screenshots/01-project-overview.png]) |
 | 2️⃣  | GitHub Integration via Azure Boards Extension | ![Extension](assets/screenshots/02-azure-boards-extension.png) |
 | 3️⃣  | Service Connection Confirmed                  | ![Connection](assets/screenshots/03-service-connection-confirm.png) |
 | 4️⃣  | Work Item Auto-Linked to GitHub Commit        | ![Commit](assets/screenshots/04-work-item-linked-in-commit.png) |
