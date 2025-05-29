@@ -63,6 +63,17 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
 
 ---
 
+### 6. 🗂️ Lab 6: DevOps Project Tracking – Azure Boards + GitHub Integration
+   - **Description:** Connect GitHub commits to Azure Boards work items for seamless project tracking and traceability. This lab demonstrates auto-linking, commit syntax, and board views as part of AZ-400 collaboration practices.
+	- **Key Features:**
+	- Auto-links commits to work items using AB# syntax.
+     - Supports state transitions with keywords like Fixes and Resolves.
+     - Includes board permission tips, query samples, and tracking views.
+   - **Technologies:** Azure Boards · GitHub · DevOps Project Management · Markdown Docs
+   - **Repository:** [View Lab]((./AZ-400/labs/lab-6-devops-project-tracking-azure-boards-github)
+
+---
+
 # 🛠️ Skills Demonstrated
 
 - Infrastructure as Code (Bicep, Terraform)
