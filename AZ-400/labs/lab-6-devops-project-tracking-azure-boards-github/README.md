@@ -1,17 +1,17 @@
 Lab 6: DevOps Project Tracking with Azure Boards and GitHub
 
-🧠 Overview
+## 🧠 Overview
 
 This lab demonstrates how to integrate GitHub with Azure Boards to track DevOps work items, pull requests, and commits in real time. It’s part of the AZ-400 DevOps Lab Series.
 
-🎯 Goals
+## 🎯 Goals
 
 • Link GitHub repository to Azure Boards
 • Enable automatic linking of work items via commits and PRs
 • Enforce work item mention in PR workflows
 • Visualize team progress using Boards, Backlogs, and Dashboards
 
-📦 Repo Structure
+## 📦 Repo Structure
 
 ```plaintext
 lab-6-devops-project-tracking-azure-boards-github/
@@ -29,13 +29,13 @@ lab-6-devops-project-tracking-azure-boards-github/
     └── queries-views.md
 ```
 
-🔧 Prerequisites
+## 🔧 Prerequisites
 
 • Azure DevOps organization with Azure Boards enabled
 • GitHub repository with admin access
 • Personal Access Token (PAT) for Azure DevOps (scope: Work Items, Code)
 
-⚙️ Setup Instructions
+## ⚙️ Setup Instructions
 
 1. Connect GitHub to Azure Boards
 
@@ -66,13 +66,19 @@ Create queries and dashboards:
 • Chart: Work items by state
 • View: Team capacity with effort by assignee
 
-📸 Screenshots
+## 📸 Screenshots
 
-• Linked PR to Azure Boards
-• Work item auto-updated on merge
-• Dashboard with queries and charts
+| Step | Description | Image |
+|------|-------------|-------|
+| 1️⃣   | Azure DevOps Project Settings | ![Settings](screenshots/01-settings-devops-project.png) |
+| 2️⃣   | GitHub Integration via Azure Boards Extension | ![Extension](screenshots/02-azure-boards-extension.png) |
+| 3️⃣   | Service Connection Confirmed | ![Connection](screenshots/03-service-connection-confirm.png) |
+| 4️⃣   | Work Item Auto-Linked to GitHub Commit | ![Commit](screenshots/04-work-item-linked-in-commit.png) |
+| 5️⃣   | Lab Approved by Raccoon Engineer™ | ![Raccoon](screenshots/05-raccoon-approved.png) |
 
-🔍 Resources
+---
+
+## 🔍 Resources
 
 • Azure Boards GitHub Integration Docs
 • Work Item Patterns
