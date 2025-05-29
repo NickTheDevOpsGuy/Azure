@@ -70,11 +70,11 @@ Create queries and dashboards:
 
 | Step | Description                                   | Image |
 |------|-----------------------------------------------|-------|
-| 1️⃣  | Azure DevOps Project Settings                 | ![Settings](./assets/screenshots/01-settings-devops-project.png) |
-| 2️⃣  | GitHub Integration via Azure Boards Extension | ![Extension](./assets/screenshots/02-azure-boards-extension.png) |
-| 3️⃣  | Service Connection Confirmed                  | ![Connection](./assets/screenshots/03-service-connection-confirm.png) |
-| 4️⃣  | Work Item Auto-Linked to GitHub Commit        | ![Commit](./assets/screenshots/04-work-item-linked-in-commit.png) |
-| 5️⃣  | Lab Approved by Raccoon Engineer™             | ![Raccoon](./assets/screenshots/05-raccoon-approved.png) |
+| 1️⃣  | Azure DevOps Project Settings                 | ![Settings](assets/screenshots/01-settings-devops-project.png) |
+| 2️⃣  | GitHub Integration via Azure Boards Extension | ![Extension](assets/screenshots/02-azure-boards-extension.png) |
+| 3️⃣  | Service Connection Confirmed                  | ![Connection](assets/screenshots/03-service-connection-confirm.png) |
+| 4️⃣  | Work Item Auto-Linked to GitHub Commit        | ![Commit](assets/screenshots/04-work-item-linked-in-commit.png) |
+| 5️⃣  | Lab Approved by Raccoon Engineer™             | ![Raccoon](assets/screenshots/05-raccoon-approved.png) |
 
 ---
 
