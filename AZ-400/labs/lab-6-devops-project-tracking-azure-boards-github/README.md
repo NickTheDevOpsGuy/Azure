@@ -74,7 +74,7 @@ Create queries and dashboards:
 | 2️⃣  | GitHub Integration via Azure Boards Extension | ![Extension](https://github.com/NickTheDevOpsGuy/Azure/blob/develop/AZ-400/labs/lab-6-devops-project-tracking-azure-boards-github/assets/screenshots/02-github-integration-settings.png) |
 | 3️⃣  | Service Connection Confirmed                  | ![Connection](https://github.com/NickTheDevOpsGuy/Azure/blob/develop/AZ-400/labs/lab-6-devops-project-tracking-azure-boards-github/assets/screenshots/03-work-item-with-commit.png) |
 | 4️⃣  | Work Item Auto-Linked to GitHub Commit        | ![Commit](https://github.com/NickTheDevOpsGuy/Azure/blob/develop/AZ-400/labs/lab-6-devops-project-tracking-azure-boards-github/assets/screenshots/04-commit-message-example.png) |
-| 5️⃣  | Lab Approved by Raccoon Engineer™             | ![Raccoon](https://github.com/NickTheDevOpsGuy/Azure/blob/develop/AZ-400/labs/lab-6-devops-project-tracking-azure-boards-github/assets/screenshots/03-work-item-with-commit.png) |
+| 5️⃣  | Lab Approved by Raccoon Engineer™             | ![Raccoon](https://github.com/NickTheDevOpsGuy/Azure/blob/develop/AZ-400/labs/lab-6-devops-project-tracking-azure-boards-github/assets/screenshots/05-racoon.png) |
 
 ---
 
