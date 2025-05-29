@@ -2,13 +2,13 @@
 
 This guide explains how to connect your GitHub repository to Azure Boards, enabling automatic tracking of work item progress via commit messages.
 
-📦 Prerequisites
+## 📦 Prerequisites
 • An Azure DevOps organization
 • A project in Azure DevOps (e.g., lab-6-devops-project-tracking-azure-boards-github)
 • A GitHub repository
 • Admin permissions on both Azure DevOps and GitHub
 
-⚙️ Setup Steps
+## ⚙️ Setup Steps
 
 1. Install the Azure Boards GitHub App
 	1.	Go to: https://azure.com/github
@@ -29,20 +29,20 @@ This guide explains how to connect your GitHub repository to Azure Boards, enabl
 
 git commit -m "Fix logging bug. AB#123"
 
-4.	Push the commit:
+4. Push the commit:
 
 git push origin main
 
-5.	Go back to the Azure Boards task. Under Development, the GitHub commit should now be visible.
+5.  Go back to the Azure Boards task. Under Development, the GitHub commit should now be visible.
 
-📝 
-Syntax Reference
+##📝 Syntax Reference
+
 • AB#{id} — Link to a work item
 • Fixes AB#{id} — Will also move the work item to Done/Resolved (if configured)
 
 💡 Tip: You must use the AB#123 syntax to reference Azure Boards work items.
 
-✅ Example
+## ✅ Example
 
 If you create Task #101 in Azure Boards, your commit message might be:
 
