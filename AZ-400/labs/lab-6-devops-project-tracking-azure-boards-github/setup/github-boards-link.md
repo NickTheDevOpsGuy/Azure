@@ -35,7 +35,7 @@ git push origin main
 
 5.  Go back to the Azure Boards task. Under Development, the GitHub commit should now be visible.
 
-##📝 Syntax Reference
+## 📝 Syntax Reference
 
 • AB#{id} — Link to a work item
 • Fixes AB#{id} — Will also move the work item to Done/Resolved (if configured)
