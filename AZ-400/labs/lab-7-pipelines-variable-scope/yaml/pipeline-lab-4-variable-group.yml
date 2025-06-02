@@ -1,0 +1,12 @@
+trigger:
+- main
+
+variables:
+- group: demo-variable-group
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo "Environment: $(environment)"
+- script: echo "Region: $(region)"

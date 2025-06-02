@@ -1,0 +1,26 @@
+trigger:
+- main
+
+variables:
+  appName: 'MyApp'
+
+stages:
+- stage: Dev
+  variables:
+    location: 'eastus'
+  jobs:
+  - job: Deploy
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - script: echo "Deploying $(appName) to $(location)"
+
+- stage: Prod
+  variables:
+    location: 'westus2'
+  jobs:
+  - job: Deploy
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - script: echo "Deploying $(appName) to $(location)"

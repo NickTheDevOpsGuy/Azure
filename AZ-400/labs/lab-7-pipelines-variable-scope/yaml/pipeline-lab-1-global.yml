@@ -1,0 +1,12 @@
+trigger:
+- main
+
+variables:
+  appName: 'MyApp'
+  location: 'eastus'
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo "Deploying $(appName) to $(location)"

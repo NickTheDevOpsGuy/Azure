@@ -1,0 +1,11 @@
+trigger:
+- main
+
+variables:
+  buildNumber: $[counter('buildnum', 1)]
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo "Build run number: $(buildNumber)"
