@@ -17,16 +17,22 @@ By the end of this lab you will:
 
 ## 📁 Project Structure
 ```plaintext
-.
-├── infra/
-│   ├── main.bicep
-│   └── modules/
-├── app/
-├── queries/
-└── README.md
+
+AZ-400/labs/lab-7-pipelines-variable-scope/
+├── README.md  ✅ (I just gave you)
+├── yaml/
+│   ├── pipeline-lab-1-global-deploy.yml
+│   ├── pipeline-lab-2-stage-scope-deploy.yml
+│   ├── pipeline-lab-3-job-scope-deploy.yml
+│   ├── pipeline-lab-4-variable-group-deploy.yml
+│   ├── pipeline-lab-5-runtime-expressions-deploy.yml
+│   └── pipeline-lab-6-secret-vars-deploy.yml
+└── assets/
+    └── variable-scope-diagram.png (coming next)
 ```
 
 ## 🔧 Pre-Reqs
+
 Existing Azure DevOps project
 
 * Azure DevOps Pipeline agent (Microsoft-hosted is fine)
@@ -34,6 +40,68 @@ Existing Azure DevOps project
     * environment = dev
     * region = eastus
     * db_password (secret)
+
+---
+
+## 🔢 Lab Files
+
+
+
+---
+
+## 🔢 Pipeline YAMLs
+
+pipeline-lab-1-global.yml
+
+```yaml
+trigger:
+- main
+
+variables:
+  appName: 'MyApp'
+  location: 'eastus'
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo "Deploying $(appName) to $(location)"
+```
+
+---
+
+pipeline-lab-2-stage-scope.yml
+
+```yaml
+
+trigger:
+- main
+
+variables:
+  appName: 'MyApp'
+
+stages:
+- stage: Dev
+  variables:
+    location: 'eastus'
+  jobs:
+  - job: Deploy
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - script: echo "Deploying $(appName) to $(location)"
+
+- stage: Prod
+  variables:
+    location: 'westus2'
+  jobs:
+  - job: Deploy
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - script: echo "Deploying $(appName) to $(location)"
+
+```
 
 ## 🙋‍♂️ About the Author
 
