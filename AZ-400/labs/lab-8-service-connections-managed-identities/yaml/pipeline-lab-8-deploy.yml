@@ -1,0 +1,28 @@
+trigger:
+- main
+
+variables:
+  resourceGroupName: 'lab8-rg'
+  location: 'eastus'
+  storageAccountName: $[format('lab8{0}', variables['Build.BuildId'])]
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'AZURE-SERVICE-CONNECTION'
+    scriptType: bash
+    scriptLocation: inlineScript
+    inlineScript: |
+      echo "Creating Resource Group: $(resourceGroupName)"
+      az group create --name $(resourceGroupName) --location $(location)
+
+      echo "Creating Storage Account: $(storageAccountName)"
+      az storage account create \
+        --name $(storageAccountName) \
+        --resource-group $(resourceGroupName) \
+        --location $(location) \
+        --sku Standard_LRS
+  displayName: 'Deploy Resource Group & Storage Account'
