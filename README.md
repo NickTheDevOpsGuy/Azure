@@ -93,10 +93,15 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
 ### 6. 🗂️ Lab 8 - Service Connections & Managed Identities
    - **Description:** Connect GitHub commits to Azure Boards work items for seamless project tracking and traceability. This lab demonstrates auto-linking, commit syntax, and board views as part of AZ-400 collaboration practices.
 	- **Key Features:**
-	- Auto-links commits to work items using AB# syntax.
-     - Supports state transitions with keywords like Fixes and Resolves.
-     - Includes board permission tips, query samples, and tracking views.
-   - **Technologies:** Azure Boards · GitHub · DevOps Project Management · Markdown Docs
+	- Full end-to-end Azure pipeline using AzureCLI@2 task
+     - Secure authentication with Azure Resource Manager Service Connections
+     - Contributor role assignment via RBAC for resource deployments
+     - Dynamically generated storage account names using Build.BuildId to ensure uniqueness
+     - Azure Resource Group provisioning directly from pipeline
+     - Storage Account creation with ARM-compliant naming conventions
+     - Service Connection setup instructions included
+     - Full deployment diagram generated for repo documentation
+   - **Technologies:** Azure DevOps Pipelines, Azure Resource Manager (ARM), Azure Service Connections (SPN), Azure CLI, Azure RBAC, Storage Account, YAML, AzureCLI@2 Pipeline Task
    - **Repository:** [View Lab](./AZ-400/labs/llab-8-service-connections-managed-identities)
 
 ---
