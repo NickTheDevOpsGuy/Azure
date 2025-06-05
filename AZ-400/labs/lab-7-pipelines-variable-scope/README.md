@@ -1,4 +1,4 @@
-# Project Title
+## Azure DevOps Pipelines Variable Scope
 Lab 7: Azure DevOps Pipelines Variable Scope
 
 ## 📝 Description
