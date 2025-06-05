@@ -16,22 +16,10 @@ Realistic, exam-aligned DevOps labs with full code, YAML pipelines, and Azure in
 - `lab-2-storage-private-endpoint/` – Deploys a Storage Account with a Private Endpoint and Private DNS Zone for secure access.
 - `lab-3-keyvault-secert/` – Deploys an Azure Key Vault with a sample secret and access policies for secure management.
 - `lab-4-terraform-rg/` – Deploys an Azure Resource Group, Storage Account, and Log Analytics Workspace using Terraform.
-
-### 📝 `docs/`
-Reference guides, usage walkthroughs, and key exam topics explained clearly.
-
-- `dashboards-metrics.md` – What metrics to track, and how to visualize them
-- `lab-1-monitoring-storage.md` – A sample Kubernetes project
-- `lab-2-storage-private-endpoint.md` – Deploys a Storage Account with a Private Endpoint and Private DNS Zone for secure access.
-- `lab-3-keyvault-secert.md` – Deploys an Azure Key Vault with a sample secret and access policies for secure management.
-- `lab-4-terraform-rg.md` – Deploys an Azure Resource Group, Storage Account, and Log Analytics Workspace using Terraform.
-
-### ✅ `checklists/`
-High-impact checklists to track your progress and reinforce exam readiness.
-
-- `pipelines.md`
-- `security-compliance.md`
-- `instrumentation.md`
+- `lab-5-az400-instrumentation-lab/` – Deploys an Azure Resource Group, Storage Account, and Log Analytics Workspace using Terraform.
+- `lab-6-devops-project-tracking-azure-boards-github/` – Connect GitHub commits to Azure Boards work items for seamless project tracking and traceability. This lab demonstrates auto-linking, commit syntax, and board views as part of AZ-400 collaboration practices.
+- `lab-7-pipelines-variable-scope/` – Hands-on lab focused on mastering Azure DevOps Pipeline variables across multiple scopes.
+- `lab-8-service-connections-managed-identities/` – Connect GitHub commits to Azure Boards work items for seamless project tracking and traceability. 
 
 ---
 
