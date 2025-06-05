@@ -78,13 +78,13 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
    - **Description:** Hands-on lab focused on mastering Azure DevOps Pipeline variables across multiple scopes. Includes pipeline-level, stage-level, job-level variables, variable groups, runtime expressions, and secret variable handling. This lab is fully AZ-400 exam aligned to practice variable resolution and precedence.
 	- **Key Features:**
 	- 6 separate YAML pipelines covering variable scoping concepts
-- Pipeline-scoped variables with global access
-- Stage-scoped overrides across multiple deployment stages
-- Job-scoped isolated variables per deployment job
-- Variable Groups integration for externalized values and secrets
-- Runtime expressions using Azure DevOps counter() function
-- Secret variable masking behavior validated in pipeline logs
-- Fully reusable YAML templates for reference and future projects
+     - Pipeline-scoped variables with global access
+     - Stage-scoped overrides across multiple deployment stages
+     - Job-scoped isolated variables per deployment job
+     - Variable Groups integration for externalized values and secrets
+     - Runtime expressions using Azure DevOps counter() function
+     - Secret variable masking behavior validated in pipeline logs
+     - Fully reusable YAML templates for reference and future projects
    - **Technologies:** Azure DevOps Pipelines, YAML, Variable Groups, Secret Variables, Runtime Expressions
    - **Repository:** [View Lab](./AZ-400/labs/lab-7-pipelines-variable-scope)
 
