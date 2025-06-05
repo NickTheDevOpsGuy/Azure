@@ -19,7 +19,7 @@ By the end of this lab you will:
 ```plaintext
 
 AZ-400/labs/lab-7-pipelines-variable-scope/
-├── README.md  ✅ (I just gave you)
+├── README.md
 ├── yaml/
 │   ├── pipeline-lab-1-global-deploy.yml
 │   ├── pipeline-lab-2-stage-scope-deploy.yml
