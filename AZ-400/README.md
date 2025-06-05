@@ -17,7 +17,7 @@ Realistic, exam-aligned DevOps labs with full code, YAML pipelines, and Azure in
 - `lab-3-keyvault-secert/` – Deploys an Azure Key Vault with a sample secret and access policies for secure management.
 - `lab-4-terraform-rg/` – Deploys an Azure Resource Group, Storage Account, and Log Analytics Workspace using Terraform.
 - `lab-5-az400-instrumentation-lab/` – Deploys an Azure Resource Group, Storage Account, and Log Analytics Workspace using Terraform.
-- `lab-6-devops-project-tracking-azure-boards-github/` – Connect GitHub commits to Azure Boards work items for seamless project tracking and traceability. This lab demonstrates auto-linking, commit syntax, and board views as part of AZ-400 collaboration practices.
+- `lab-6-devops-project-tracking-azure-boards-github/` – Connect GitHub commits to Azure Boards work items for seamless project tracking and traceability.
 - `lab-7-pipelines-variable-scope/` – Hands-on lab focused on mastering Azure DevOps Pipeline variables across multiple scopes.
 - `lab-8-service-connections-managed-identities/` – Connect GitHub commits to Azure Boards work items for seamless project tracking and traceability. 
 
