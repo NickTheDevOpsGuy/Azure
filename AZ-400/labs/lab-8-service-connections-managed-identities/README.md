@@ -59,7 +59,7 @@ trigger:
 variables:
   resourceGroupName: 'lab8-rg'
   location: 'eastus'
-  storageAccountName: 'lab8storage${{ variables['Build.BuildId'] }}'
+  storageAccountName: $[format('lab8{0}', variables['Build.BuildId'])]
 
 pool:
   vmImage: ubuntu-latest
