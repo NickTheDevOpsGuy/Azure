@@ -65,8 +65,8 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
 
 ### 6. 🗂️ Lab 6: DevOps Project Tracking – Azure Boards + GitHub Integration
    - **Description:** Connect GitHub commits to Azure Boards work items for seamless project tracking and traceability. This lab demonstrates auto-linking, commit syntax, and board views as part of AZ-400 collaboration practices.
-	- **Key Features:**
-	- Auto-links commits to work items using AB# syntax.
+   - **Key Features:**
+     - Auto-links commits to work items using AB# syntax.
      - Supports state transitions with keywords like Fixes and Resolves.
      - Includes board permission tips, query samples, and tracking views.
    - **Technologies:** Azure Boards · GitHub · DevOps Project Management · Markdown Docs
@@ -76,8 +76,8 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
 
 ### 6. 🗂️ Lab 7 - Azure DevOps Pipeline Variable Scope
    - **Description:** Hands-on lab focused on mastering Azure DevOps Pipeline variables across multiple scopes. Includes pipeline-level, stage-level, job-level variables, variable groups, runtime expressions, and secret variable handling. This lab is fully AZ-400 exam aligned to practice variable resolution and precedence.
-	- **Key Features:**
-	- 6 separate YAML pipelines covering variable scoping concepts
+   - **Key Features:**
+     - 6 separate YAML pipelines covering variable scoping concepts
      - Pipeline-scoped variables with global access
      - Stage-scoped overrides across multiple deployment stages
      - Job-scoped isolated variables per deployment job
@@ -92,8 +92,8 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
 
 ### 6. 🗂️ Lab 8 - Service Connections & Managed Identities
    - **Description:** Connect GitHub commits to Azure Boards work items for seamless project tracking and traceability. This lab demonstrates auto-linking, commit syntax, and board views as part of AZ-400 collaboration practices.
-	- **Key Features:**
-	- Full end-to-end Azure pipeline using AzureCLI@2 task
+   - **Key Features:**
+     - Full end-to-end Azure pipeline using AzureCLI@2 task
      - Secure authentication with Azure Resource Manager Service Connections
      - Contributor role assignment via RBAC for resource deployments
      - Dynamically generated storage account names using Build.BuildId to ensure uniqueness
