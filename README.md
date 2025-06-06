@@ -74,7 +74,7 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
 
 ---
 
-### **Lab 7 - Azure DevOps Pipeline Variable Scope**
+### 7. **Lab 7: - Azure DevOps Pipeline Variable Scope**
    - **Description:** Hands-on lab focused on mastering Azure DevOps Pipeline variables across multiple scopes. Includes pipeline-level, stage-level, job-level variables, variable groups, runtime expressions, and secret variable handling. This lab is fully AZ-400 exam aligned to practice variable resolution and precedence.
    - **Key Features:**
      - 6 separate YAML pipelines covering variable scoping concepts
@@ -90,7 +90,7 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
 
 ---
 
-### **Lab 8 - Service Connections & Managed Identities
+### 8. **Lab 8: - Service Connections & Managed Identities
    - **Description:** Connect GitHub commits to Azure Boards work items for seamless project tracking and traceability. This lab demonstrates auto-linking, commit syntax, and board views as part of AZ-400 collaboration practices.
    - **Key Features:**
      - Full end-to-end Azure pipeline using AzureCLI@2 task
