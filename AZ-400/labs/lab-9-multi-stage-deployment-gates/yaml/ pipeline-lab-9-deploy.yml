@@ -1,0 +1,46 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: Dev
+  displayName: 'Deploy to Dev'
+  jobs:
+  - deployment: DeployDev
+    displayName: 'Deploy Dev Job'
+    environment: 'Dev'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo "✅ Deploying to Dev environment"
+
+- stage: Staging
+  displayName: 'Deploy to Staging'
+  dependsOn: Dev
+  condition: succeeded()
+  jobs:
+  - deployment: DeployStaging
+    displayName: 'Deploy Staging Job'
+    environment: 'Staging'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo "✅ Deploying to Staging environment"
+
+- stage: Production
+  displayName: 'Deploy to Production'
+  dependsOn: Staging
+  condition: succeeded()
+  jobs:
+  - deployment: DeployProd
+    displayName: 'Deploy Prod Job'
+    environment: 'Production'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo "✅ Deploying to Production environment"
