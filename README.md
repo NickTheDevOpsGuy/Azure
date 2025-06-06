@@ -90,7 +90,7 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
 
 ---
 
-### 8. **Service Connections & Managed Identities
+### 8. **Service Connections & Managed Identities**
    - **Description:** Connect GitHub commits to Azure Boards work items for seamless project tracking and traceability. This lab demonstrates auto-linking, commit syntax, and board views as part of AZ-400 collaboration practices.
    - **Key Features:**
      - Full end-to-end Azure pipeline using AzureCLI@2 task
