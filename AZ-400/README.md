@@ -19,7 +19,8 @@ Realistic, exam-aligned DevOps labs with full code, YAML pipelines, and Azure in
 - `lab-5-az400-instrumentation-lab/` – Deploys an Azure Resource Group, Storage Account, and Log Analytics Workspace using Terraform.
 - `lab-6-devops-project-tracking-azure-boards-github/` – Connect GitHub commits to Azure Boards work items for seamless project tracking and traceability.
 - `lab-7-pipelines-variable-scope/` – Hands-on lab focused on mastering Azure DevOps Pipeline variables across multiple scopes.
-- `lab-8-service-connections-managed-identities/` – Connect GitHub commits to Azure Boards work items for seamless project tracking and traceability. 
+- `lab-8-service-connections-managed-identities/` – Connect GitHub commits to Azure Boards work items for seamless project tracking and traceability.
+- `lab-9-multi-stage-deployment-gates//` – This lab builds a full production-style Azure DevOps multi-stage pipeline with real gated deployments across Dev, Staging, and Production environments.
 
 ---
 
