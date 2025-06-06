@@ -52,7 +52,7 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
 
 ---
 
-### 5. **📡 Lab 5: AZ-400 Instrumentation Lab – App Insights + Node.js**
+### 5. **Lab 5: AZ-400 Instrumentation Lab – App Insights + Node.js**
    - **Description:** Add observability to a Node.js web app using Azure Application Insights. Tracks requests, failures, dependencies, and more for AZ-400 monitoring prep.
    - **Key Features:**
      - Tracks requests, exceptions, and dependencies.
@@ -63,7 +63,7 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
 
 ---
 
-### 6. 🗂️ Lab 6: DevOps Project Tracking – Azure Boards + GitHub Integration
+### 6. **Lab 6: DevOps Project Tracking – Azure Boards + GitHub Integration**
    - **Description:** Connect GitHub commits to Azure Boards work items for seamless project tracking and traceability. This lab demonstrates auto-linking, commit syntax, and board views as part of AZ-400 collaboration practices.
    - **Key Features:**
      - Auto-links commits to work items using AB# syntax.
@@ -74,7 +74,7 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
 
 ---
 
-### 6. 🗂️ Lab 7 - Azure DevOps Pipeline Variable Scope
+### **Lab 7 - Azure DevOps Pipeline Variable Scope**
    - **Description:** Hands-on lab focused on mastering Azure DevOps Pipeline variables across multiple scopes. Includes pipeline-level, stage-level, job-level variables, variable groups, runtime expressions, and secret variable handling. This lab is fully AZ-400 exam aligned to practice variable resolution and precedence.
    - **Key Features:**
      - 6 separate YAML pipelines covering variable scoping concepts
@@ -90,7 +90,7 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
 
 ---
 
-### 6. 🗂️ Lab 8 - Service Connections & Managed Identities
+### **Lab 8 - Service Connections & Managed Identities
    - **Description:** Connect GitHub commits to Azure Boards work items for seamless project tracking and traceability. This lab demonstrates auto-linking, commit syntax, and board views as part of AZ-400 collaboration practices.
    - **Key Features:**
      - Full end-to-end Azure pipeline using AzureCLI@2 task
