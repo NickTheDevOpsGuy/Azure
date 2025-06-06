@@ -106,6 +106,21 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
 
 ---
 
+### 9.  **Multi-Stage Pipelines with Deployment Gates**
+   - **Description:** This lab builds a full production-style Azure DevOps multi-stage pipeline with real gated deployments across Dev, Staging, and Production environments. It integrates real Azure deployments, service connections, environment-based approvals, and RBAC security to simulate real-world CI/CD patterns directly aligned to AZ-400 exam objectives.
+- **Key Features:**
+     - Azure DevOps Pipelines
+     - Azure DevOps Environments
+     - Azure Service Connections
+     - Azure CLI
+     - Azure Resource Manager (ARM)
+     - Azure Storage Accounts
+     - RBAC
+     - Ubuntu Agent
+ - **Repository:** [AZ-400 - Lab 9 - Multi-Stage Pipelines with Deployment Gates](https://github.com/NickTheDevOpsGuy/Azure/tree/develop/AZ-400/labs/lab-9-multi-stage-deployment-gates)
+
+---
+
 # 🛠️ Skills Demonstrated
 
 - Infrastructure as Code (Bicep, Terraform)
