@@ -1,0 +1,30 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: BuildAndPublish
+  displayName: 'Build and Publish Universal Package'
+  jobs:
+  - job: Build
+    displayName: 'Build Job'
+    steps:
+    - script: |
+        mkdir -p app/output
+        echo "Hello AZ-400 real world!" > app/output/app.txt
+        cd app
+        zip -r output.zip output
+      displayName: 'Create Build Artifact (zip)'
+
+    - task: UniversalPackages@0
+      displayName: 'Publish Universal Package to Azure Artifacts'
+      inputs:
+        command: publish
+        publishDirectory: 'app'
+        feedsToUse: 'internal'
+        vstsFeedPublish: 'az400-lab10-feed'
+        vstsFeedPackagePublish: 'sample-app'
+        packagePublishDescription: 'Sample real-world build artifact'
+        versionOption: 'patch'

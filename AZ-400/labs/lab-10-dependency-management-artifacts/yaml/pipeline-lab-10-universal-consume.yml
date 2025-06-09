@@ -1,0 +1,27 @@
+trigger:
+- none
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: ConsumePackage
+  displayName: 'Consume Universal Package'
+  jobs:
+  - job: Consume
+    displayName: 'Consume Job'
+    steps:
+    - task: UniversalPackages@0
+      displayName: 'Download Universal Package'
+      inputs:
+        command: download
+        downloadDirectory: 'artifact'
+        feedsToUse: 'internal'
+        vstsFeedDownload: 'az400-lab10-feed'
+        vstsFeedPackageDownload: 'sample-app'
+        versionDownload: 'latest'
+
+    - script: |
+        ls -R artifact
+        echo "✅ Successfully downloaded and extracted artifact"
+      displayName: 'Verify Artifact'
