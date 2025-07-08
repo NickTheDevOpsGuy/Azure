@@ -1,0 +1,2 @@
+api:
+  image: ghcr.io/your-org/voting-api:staging

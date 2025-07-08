@@ -1,0 +1,19 @@
+name: Deploy to Dev
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Helm
+        uses: azure/setup-helm@v3
+
+      - name: Deploy to Dev
+        run: helm upgrade --install voting-app ./helm -f helm/values/dev.yaml

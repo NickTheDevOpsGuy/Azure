@@ -1,0 +1,123 @@
+{
+  "uid": "voting-app-dashboard",
+  "title": "Voting App Overview",
+  "schemaVersion": 30,
+  "version": 1,
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Total Votes Cast",
+      "id": 1,
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "votes_total",
+          "legendFormat": "Votes",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "orange", "value": 500 },
+              { "color": "red", "value": 1000 }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "type": "graph",
+      "title": "Vote Traffic Over Time",
+      "id": 2,
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "rate(votes_total[1m])",
+          "legendFormat": "Votes/min",
+          "refId": "A"
+        }
+      ],
+      "xaxis": {
+        "mode": "time"
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "Votes/min",
+          "logBase": 1,
+          "min": 0
+        },
+        {
+          "format": "short"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "5xx Error Rate",
+      "id": 3,
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "rate(http_requests_total{status=~\"5..\"}[5m])",
+          "legendFormat": "Errors/sec",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "red", "value": 0.05 }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "type": "graph",
+      "title": "Request Duration (95th percentile)",
+      "id": 4,
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))",
+          "legendFormat": "p95 latency",
+          "refId": "A"
+        }
+      ],
+      "xaxis": {
+        "mode": "time"
+      },
+      "yaxes": [
+        {
+          "format": "s",
+          "label": "Seconds",
+          "min": 0
+        },
+        {
+          "format": "short"
+        }
+      ]
+    }
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "refresh": "30s"
+}
