@@ -1,6 +1,10 @@
 trigger:
 - main
 
+variables:
+  location: 'eastus'
+  buildId: $[variables['Build.BuildId']]
+
 pool:
   vmImage: ubuntu-latest
 
@@ -11,11 +15,27 @@ stages:
   - deployment: DeployDev
     displayName: 'Deploy Dev Job'
     environment: 'Dev'
+    variables:
+      resourceGroupName: 'lab9-dev-rg'
+      storageAccountName: $[format('lab9dev{0}', variables['buildId'])]
     strategy:
       runOnce:
         deploy:
           steps:
-          - script: echo "✅ Deploying to Dev environment"
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: 'NICKSERVICECONNECT'
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                echo "✅ Deploying to Dev environment"
+                az group create --name $(resourceGroupName) --location $(location)
+                az storage account create \
+                  --name $(storageAccountName) \
+                  --resource-group $(resourceGroupName) \
+                  --location $(location) \
+                  --sku Standard_LRS
+            displayName: 'Deploy Dev Resources'
 
 - stage: Staging
   displayName: 'Deploy to Staging'
@@ -25,11 +45,27 @@ stages:
   - deployment: DeployStaging
     displayName: 'Deploy Staging Job'
     environment: 'Staging'
+    variables:
+      resourceGroupName: 'lab9-staging-rg'
+      storageAccountName: $[format('lab9stg{0}', variables['buildId'])]
     strategy:
       runOnce:
         deploy:
           steps:
-          - script: echo "✅ Deploying to Staging environment"
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: 'NICKSERVICECONNECT'
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                echo "✅ Deploying to Staging environment"
+                az group create --name $(resourceGroupName) --location $(location)
+                az storage account create \
+                  --name $(storageAccountName) \
+                  --resource-group $(resourceGroupName) \
+                  --location $(location) \
+                  --sku Standard_LRS
+            displayName: 'Deploy Staging Resources'
 
 - stage: Production
   displayName: 'Deploy to Production'
@@ -39,8 +75,24 @@ stages:
   - deployment: DeployProd
     displayName: 'Deploy Prod Job'
     environment: 'Production'
+    variables:
+      resourceGroupName: 'lab9-prod-rg'
+      storageAccountName: $[format('lab9prod{0}', variables['buildId'])]
     strategy:
       runOnce:
         deploy:
           steps:
-          - script: echo "✅ Deploying to Production environment"
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: 'NICKSERVICECONNECT'
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                echo "✅ Deploying to Production environment"
+                az group create --name $(resourceGroupName) --location $(location)
+                az storage account create \
+                  --name $(storageAccountName) \
+                  --resource-group $(resourceGroupName) \
+                  --location $(location) \
+                  --sku Standard_LRS
+            displayName: 'Deploy Prod Resources'
