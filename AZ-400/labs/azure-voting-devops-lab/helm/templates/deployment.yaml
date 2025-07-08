@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voting-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: voting-api
+  template:
+    metadata:
+      labels:
+        app: voting-api
+    spec:
+      containers:
+        - name: api
+          image: "{{ .Values.api.image }}"
+          ports:
+            - containerPort: 8000

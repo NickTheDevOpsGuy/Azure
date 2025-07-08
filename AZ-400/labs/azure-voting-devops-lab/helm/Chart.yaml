@@ -1,0 +1,4 @@
+apiVersion: v2
+name: voting-app
+version: 0.1.0
+description: Helm chart for the voting application

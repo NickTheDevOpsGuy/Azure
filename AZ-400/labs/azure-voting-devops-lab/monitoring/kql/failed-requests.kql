@@ -1,0 +1,3 @@
+requests
+| where success == false
+| summarize count() by bin(timestamp, 1m), resultCode
