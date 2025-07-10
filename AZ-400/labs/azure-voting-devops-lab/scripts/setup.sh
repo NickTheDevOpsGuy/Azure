@@ -1,25 +1,63 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euo pipefail
 
-# 🛠️ Azure Voting App - Infrastructure Setup Script
-# This script provisions the full AKS environment using Bicep templates.
+# -----------------------------------------------------------------------------
+# ☸️ AZ-400 Voting DevOps Lab Setup Script
+# -----------------------------------------------------------------------------
 
-# Defaults (can be overridden by environment variables)
-RESOURCE_GROUP=${RESOURCE_GROUP:-"devops-rg"}
-LOCATION=${LOCATION:-"eastus"}
-ENVIRONMENT=${ENVIRONMENT:-"dev"}
+# 🧾 Usage instructions
+function show_help() {
+  echo ""
+  echo "Usage: ./scripts/setup.sh <environment> <resource-group> <location>"
+  echo ""
+  echo "Example:"
+  echo "  ./scripts/setup.sh dev devops-rg eastus"
+  echo ""
+  exit 1
+}
 
-# 💬 Show current configuration
+# 🌱 Inputs
+ENVIRONMENT="${1:-}"
+RESOURCE_GROUP="${2:-}"
+LOCATION="${3:-}"
+
+if [[ -z "$ENVIRONMENT" || -z "$RESOURCE_GROUP" || -z "$LOCATION" ]]; then
+  show_help
+fi
+
+echo ""
 echo "📦 Resource Group: $RESOURCE_GROUP"
-echo "📍 Location: $LOCATION"
-echo "🌱 Environment: $ENVIRONMENT"
+echo "📍 Location:       $LOCATION"
+echo "🌿 Environment:    $ENVIRONMENT"
+echo ""
 
-# 🚀 Deploy infrastructure
-az group create --name "$RESOURCE_GROUP" --location "$LOCATION"
-az deployment group create \
+# ⛳️ Create Resource Group if needed
+echo "🛠️  Creating resource group (if not exists)..."
+az group create --name "$RESOURCE_GROUP" --location "$LOCATION" --output none
+
+# 🚀 Deploy Bicep
+echo "🚀 Deploying infrastructure from main.bicep..."
+deployment_output=$(az deployment group create \
   --resource-group "$RESOURCE_GROUP" \
-  --template-file ../bicep/main.bicep \
-  --parameters environment="$ENVIRONMENT"
+  --template-file ./bicep/main.bicep \
+  --parameters environment="$ENVIRONMENT" location="$LOCATION" \
+  --query "properties.outputs" \
+  --output json)
 
-echo "✅ Deployment complete!"
-echo "🧭 Explore your resources in the Azure Portal or use Azure CLI to verify."
+# ✅ Display all outputs
+echo ""
+echo "✅ Deployment Outputs:"
+echo "$deployment_output" | jq .
+
+# 🔍 Extract specific AKS values
+aks_name=$(echo "$deployment_output" | jq -r '.aksName.value // empty')
+aks_fqdn=$(echo "$deployment_output" | jq -r '.aksFqdn.value // empty')
+aks_version=$(echo "$deployment_output" | jq -r '.aksVersion.value // empty')
+
+if [[ -n "$aks_name" ]]; then
+  echo ""
+  echo "☸️ AKS Cluster Info:"
+  echo "🔹 Name:        $aks_name"
+  echo "🔹 Version:     $aks_version"
+  echo "🔹 API Server:  $aks_fqdn"
+fi
