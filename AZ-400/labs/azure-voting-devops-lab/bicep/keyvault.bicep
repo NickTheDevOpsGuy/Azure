@@ -1,8 +1,11 @@
 param environment string
+param location string
 
-resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
-  name: '${environment}-kv'
-  location: resourceGroup().location
+var keyVaultName = '${environment}-kv-${uniqueString(resourceGroup().id)}'
+
+resource keyVault 'Microsoft.KeyVault/vaults@2023-02-01' = {
+  name: keyVaultName
+  location: location
   properties: {
     sku: {
       family: 'A'
@@ -10,5 +13,7 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
     }
     tenantId: subscription().tenantId
     accessPolicies: []
+    enableSoftDelete: true
+    enablePurgeProtection: true  // Must be true once previously enabled
   }
 }
