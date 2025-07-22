@@ -119,22 +119,6 @@ This section of the repository is dedicated to Azure-based projects and labs, sh
      - Ubuntu Agent
  - **Repository:** [AZ-400 - Lab 9 - Multi-Stage Pipelines with Deployment Gates](https://github.com/NickTheDevOpsGuy/Azure/tree/develop/AZ-400/labs/lab-9-multi-stage-deployment-gates)
 
-### 10.  **Azure Voting DevOps Lab - Phase 1: Infrastructure as Code (IaC) with Bicep**
-   - **Description:** This lab provisions the full infrastructure for a containerized voting app using modular Bicep templates. It includes AKS, networking, Key Vault, and monitoring components, all deployed via a parameterized setup.sh script. Designed to reflect real-world IaC practices aligned with AZ-400 objectives.
-- **Key Features:**
-     - Azure Kubernetes Service (AKS)
-	  - Bicep Modular Templates
-     - Virtual Network + Subnet
-     - Azure Key Vault (secure secrets)
-     - Log Analytics Workspace
-     - Network Watcher Integration
-     - Parameterized Shell Script (setup.sh)
-     - Output extraction with jq
-     - Environment-agnostic (dev/stage/prod)
- - **Repository:** [AZ-400 - Lab 10 - Azure Voting DevOps Lab (Phase 1)](https://github.com/NickTheDevOpsGuy/Azure/tree/develop/AZ-400/labs/azure-voting-devops-lab)
-
----
-
 # 🛠️ Skills Demonstrated
 
 - Infrastructure as Code (Bicep, Terraform)
