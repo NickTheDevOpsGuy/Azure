@@ -1,3 +1,0 @@
-requests
-| where cloud_RoleName == "voting-api"
-| summarize count() by bin(timestamp, 1m)
