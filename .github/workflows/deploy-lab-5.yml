@@ -25,6 +25,7 @@ jobs:
         uses: azure/arm-deploy@v2
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          scope: resourceGroup
           resourceGroupName: NickClarkRG
           template: AZ-400/labs/lab-5-az400-instrumentation-lab/infra/main.bicep
           parameters: AZ-400/labs/lab-5-az400-instrumentation-lab/infra/parameters.json
