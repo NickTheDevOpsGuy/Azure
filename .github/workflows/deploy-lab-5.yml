@@ -19,6 +19,7 @@ jobs:
       - name: Deploy Bicep for Lab 5
         uses: azure/arm-deploy@v2
         with:
-          resourcegroup: NickClarkRG
+          scope: resourcegroup
+          resourceGroupName: NickClarkRG
           template: AZ-400/labs/lab-5-az400-instrumentation-lab/infra/main.bicep
           parameters: AZ-400/labs/lab-5-az400-instrumentation-lab/infra/parameters.json
