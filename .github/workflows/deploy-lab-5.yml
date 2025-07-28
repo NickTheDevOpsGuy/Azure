@@ -28,7 +28,7 @@ jobs:
           scope: resourcegroup
           resourceGroupName: NickClarkRG
           template: AZ-400/labs/lab-5-az400-instrumentation-lab/infra/main.bicep
-          parameters: AZ-400/labs/lab-5-az400-instrumentation-lab/infra/parameters.json
+          parameters: AZ-400/labs/lab-5-az400-instrumentation-lab/infra/parameters.dev.json
           deploymentName: lab5-${{ github.run_number }}
           deploymentMode: Incremental
 
