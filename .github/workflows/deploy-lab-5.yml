@@ -1,0 +1,25 @@
+name: Deploy Lab 5 - Instrumentation Lab
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy Bicep for Lab 5
+        uses: azure/arm-deploy@v1
+        with:
+          scope: resourceGroup
+          resourceGroupName: NickClarkRG
+          template: AZ-400/labs/lab-5-az400-instrumentation-lab/infra/main.bicep
+          parameters: AZ-400/labs/lab-5-az400-instrumentation-lab/infra/parameters.json
