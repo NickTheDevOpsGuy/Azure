@@ -1,10 +1,10 @@
+@description('Name of the Function App')
+param functionName string
+
 @description('Name of the App Service plan')
-param planName string = 'plan-${environment}'
+param planName string
 
-@description('Name of the Web App')
-param webAppName string = 'webapp-${environment}'
-
-@description('Location for the Web App')
+@description('Location for the Function App')
 param location string
 
 @description('App Insights instrumentation key')
@@ -17,18 +17,16 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' = {
   name: planName
   location: location
   sku: {
-    name: 'F1'
-    tier: 'Free'
-    size: 'F1'
-    capacity: 1
+    name: 'Y1'
+    tier: 'Dynamic'
   }
-  kind: 'app'
+  kind: 'functionapp'
 }
 
-resource webApp 'Microsoft.Web/sites@2022-03-01' = {
-  name: webAppName
+resource functionApp 'Microsoft.Web/sites@2022-03-01' = {
+  name: functionName
   location: location
-  kind: 'app'
+  kind: 'functionapp'
   properties: {
     serverFarmId: appServicePlan.id
     siteConfig: {
@@ -38,15 +36,21 @@ resource webApp 'Microsoft.Web/sites@2022-03-01' = {
           value: appInsightsKey
         }
         {
-          name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
-          value: 'InstrumentationKey=${appInsightsKey}'
+          name: 'FUNCTIONS_EXTENSION_VERSION'
+          value: '~4'
         }
         {
           name: 'WEBSITE_RUN_FROM_PACKAGE'
           value: '1'
+        }
+        {
+          name: 'FUNCTIONS_WORKER_RUNTIME'
+          value: 'dotnet'
         }
       ]
     }
     httpsOnly: true
   }
 }
+
+output functionAppName string = functionApp.name
