@@ -31,11 +31,3 @@ jobs:
           parameters: AZ-400/labs/lab-5-az400-instrumentation-lab/infra/parameters.dev.json
           deploymentName: lab5-${{ github.run_number }}
           deploymentMode: Incremental
-
-      - name: ✅ Tag Commit as Deployed
-        if: success()
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git tag deployed-lab5-${{ github.run_number }}
-          git push origin deployed-lab5-${{ github.run_number }}
