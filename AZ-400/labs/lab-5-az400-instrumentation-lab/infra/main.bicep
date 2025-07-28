@@ -24,11 +24,11 @@ module appInsights 'modules/app-insights.bicep' = {
   }
 }
 
-module webApp 'modules/webapp.bicep' = {
-  name: 'webApp'
+module functionApp 'modules/functionapp.bicep' = {
+  name: 'functionApp'
   params: {
+    functionName: 'func-${environment}'
     planName: 'plan-${environment}'
-    webAppName: 'webapp-${environment}'
     location: location
     appInsightsKey: appInsights.outputs.instrumentationKey
     environment: environment
@@ -37,3 +37,4 @@ module webApp 'modules/webapp.bicep' = {
 
 output appInsightsInstrumentationKey string = appInsights.outputs.instrumentationKey
 output logAnalyticsWorkspaceId string = logAnalytics.outputs.workspaceId
+output functionAppName string = functionApp.outputs.functionAppName
