@@ -27,12 +27,13 @@ jobs:
       - name: 🚀 Deploy Bicep Template
         uses: azure/arm-deploy@v2
         with:
-          scope: resourceGroup
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          scope: resourcegroup
           resourceGroupName: NickClarkRG
           template: AZ-400/labs/lab-5-az400-instrumentation-lab/infra/main.bicep
-          parameters: AZ-400/labs/lab-5-az400-instrumentation-lab/infra/parameters.json
+          parameters: AZ-400/labs/lab-5-az400-instrumentation-lab/infra/parameters.dev.json
           deploymentName: lab5-${{ github.run_number }}
-          failOnStdErr: false
+          deploymentMode: Incremental
 
       - name: 🧰 Setup Node.js
         uses: actions/setup-node@v4
