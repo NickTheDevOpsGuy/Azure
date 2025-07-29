@@ -7,6 +7,9 @@ param environment string = 'dev'
 var workspaceName = 'log-${environment}'
 var appInsightsName = 'appinsights-${environment}'
 
+var webAppName = 'webapp-${environment}'
+var planName = 'plan-${environment}'
+
 module logAnalytics 'modules/log-analytics.bicep' = {
   name: 'logAnalytics'
   params: {
@@ -21,6 +24,17 @@ module appInsights 'modules/app-insights.bicep' = {
     appInsightsName: appInsightsName
     location: location
     workspaceResourceId: logAnalytics.outputs.workspaceResourceId
+  }
+}
+
+module webApp 'modules/webapp.bicep' = {
+  name: 'webApp-${environment}'
+  params: {
+    location: location
+    environment: environment
+    appInsightsKey: appInsights.outputs.instrumentationKey
+    webAppName: webAppName
+    planName: planName
   }
 }
 

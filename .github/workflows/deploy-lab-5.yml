@@ -3,17 +3,20 @@ name: 🚀 Deploy Lab 5 - Instrumentation Lab
 on:
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  NODE_VERSION: '18.x'
+
 jobs:
   deploy:
+    name: 💡 Deploy Infra and Node.js App
     runs-on: ubuntu-latest
-    name: 🌐 Deploy to Azure
-
-    permissions:
-      id-token: write
-      contents: read
 
     steps:
-      - name: 🧾 Checkout Repo
+      - name: 🛎️ Checkout repo
         uses: actions/checkout@v4
 
       - name: 🔐 Azure Login
@@ -21,13 +24,33 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: 📦 Deploy Bicep Template
+      - name: 🚀 Deploy Bicep Template
         uses: azure/arm-deploy@v2
         with:
-          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          scope: resourcegroup
+          scope: resourceGroup
           resourceGroupName: NickClarkRG
           template: AZ-400/labs/lab-5-az400-instrumentation-lab/infra/main.bicep
-          parameters: AZ-400/labs/lab-5-az400-instrumentation-lab/infra/parameters.dev.json
+          parameters: AZ-400/labs/lab-5-az400-instrumentation-lab/infra/parameters.json
           deploymentName: lab5-${{ github.run_number }}
-          deploymentMode: Incremental
+          failOnStdErr: false
+
+      - name: 🧰 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 📦 Install Dependencies
+        run: |
+          cd AZ-400/labs/lab-5-az400-instrumentation-lab/app
+          npm ci
+
+      - name: 🗜️ Zip App Package
+        run: |
+          cd AZ-400/labs/lab-5-az400-instrumentation-lab/app
+          zip -r ../app.zip .
+
+      - name: 🌐 Deploy App to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: webapp-dev  # Update if your app name varies by environment
+          package: AZ-400/labs/lab-5-az400-instrumentation-lab/app.zip
