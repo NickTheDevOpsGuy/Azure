@@ -3,6 +3,24 @@
 ## 📝 Description
 Brief description of what this project does and who it's for.
 
+## 🧪 GitHub Actions CI/CD
+
+This repo includes a GitHub Actions workflow that deploys the entire solution—infra and app—with a single click 🚀.
+
+📂 Workflow File:
+
+```bash 
+deploy-lab5.yml
+```
+
+📌 What it does:
+
+- Deploys Log Analytics + Application Insights using Bicep
+- Deploys Azure Web App and links it to App Insights
+- Builds and deploys the Node.js monitoring demo app
+
+🟢 Trigger manually via GitHub UI → Actions → “Deploy Lab 5 - Instrumentation Lab”
+
 ## 🚀 Getting Started
 
 ### 📦 Prerequisites
@@ -49,20 +67,29 @@ KQL examples are available in `/queries/`:
 ## 📁 Project Structure
 ```
 .
-├── infra/
-│   ├── main.bicep
-│   └── modules/
-├── app/
+├── .gitignore
+├── app
+│   ├── .env
 │   ├── index.js
-│   ├── views/
-│   ├── public/
-│   └── .env.example
-├── queries/
-│   ├── homepage-requests.kql
-│   ├── errors.kql
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   │   └── styles.css
+│   └── views
+│       └── index.html
+├── infra
+│   ├── main.bicep
+│   ├── modules
+│   │   ├── app-insights.bicep
+│   │   ├── log-analytics.bicep
+│   │   └── webapp.bicep
+│   └── parameters.dev.json
+├── package-lock.json
+├── queries
 │   ├── custom-metrics.kql
-│   └── health-checks.kql
-└── README.md
+│   ├── errors.kql
+│   ├── health-checks.kql
+│   └── homepage-requests.kql
 ```
 
 ## 🔧 Tools Used
