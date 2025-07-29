@@ -9,6 +9,10 @@ permissions:
 
 env:
   NODE_VERSION: '18.x'
+  environment: dev
+  region: westus
+  resourceGroup: NickClarkRG
+  webAppName: webapp-dev
 
 jobs:
   deploy:
@@ -35,23 +39,12 @@ jobs:
           deploymentName: lab5-${{ github.run_number }}
           deploymentMode: Incremental
 
-      - name: 🧰 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: 📦 Install Dependencies
+      - name: 🚀 Zip and Deploy Node.js App
         run: |
           cd AZ-400/labs/lab-5-az400-instrumentation-lab/app
-          npm ci
-
-      - name: 🗜️ Zip App Package
-        run: |
-          cd AZ-400/labs/lab-5-az400-instrumentation-lab/app
-          zip -r ../app.zip .
-
-      - name: 🌐 Deploy App to Azure Web App
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: webapp-dev  # Update if your app name varies by environment
-          package: AZ-400/labs/lab-5-az400-instrumentation-lab/app.zip
+          zip -r app.zip .
+          az webapp deploy \
+            --resource-group ${{ env.resourceGroup }} \
+            --name ${{ env.webAppName }} \
+            --src-path app.zip \
+            --type zip
