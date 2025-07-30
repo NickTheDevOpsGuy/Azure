@@ -1,8 +1,8 @@
 @description('Name of the App Service plan')
-param planName string = 'plan-${environment}'
+param planName string
 
 @description('Name of the Web App')
-param webAppName string = 'webapp-${environment}'
+param webAppName string
 
 @description('Location for the Web App')
 param location string
@@ -20,13 +20,19 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' = {
     name: 'B1'
     tier: 'Basic'
   }
-  kind: 'app'
+  kind: 'linux'
+  properties: {
+    reserved: true
+  }
+  tags: {
+    environment: environment
+  }
 }
 
 resource webApp 'Microsoft.Web/sites@2022-03-01' = {
   name: webAppName
   location: location
-  kind: 'app'
+  kind: 'app,linux'
   properties: {
     serverFarmId: appServicePlan.id
     httpsOnly: true
@@ -39,7 +45,7 @@ resource webApp 'Microsoft.Web/sites@2022-03-01' = {
         }
         {
           name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
-          value: 'InstrumentationKey=${appInsightsKey}'
+          value: appInsightsKey
         }
         {
           name: 'WEBSITE_RUN_FROM_PACKAGE'
@@ -54,6 +60,9 @@ resource webApp 'Microsoft.Web/sites@2022-03-01' = {
   }
   identity: {
     type: 'SystemAssigned'
+  }
+  tags: {
+    environment: environment
   }
 }
 

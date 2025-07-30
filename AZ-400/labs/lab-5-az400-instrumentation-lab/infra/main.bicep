@@ -4,11 +4,15 @@ param location string = resourceGroup().location
 @description('Environment name (dev, test, prod)')
 param environment string = 'dev'
 
+@description('A unique suffix generated from the resource group ID')
+param uniqueStringSuffix string = uniqueString(resourceGroup().id)
+
+@description('Web app name')
+param webAppName string = 'webapp-${environment}-${uniqueStringSuffix}'
+
 var workspaceName = 'log-${environment}'
 var appInsightsName = 'appinsights-${environment}'
-
-var webAppName = 'webapp-${environment}'
-var planName = 'plan-${environment}'
+var planName = 'appserviceplan-${environment}-${uniqueStringSuffix}'
 
 module logAnalytics 'modules/log-analytics.bicep' = {
   name: 'logAnalytics'
