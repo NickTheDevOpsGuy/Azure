@@ -25,56 +25,46 @@ az deployment group validate \
   --only-show-errors
 
 echo "🚀 Deploying Bicep templates..."
-if ! az deployment group create \
+az deployment group create \
   --name "$DEPLOYMENT_NAME" \
   --resource-group "$RESOURCE_GROUP" \
   --template-file bicep/main.bicep \
   --parameters environment=$ENV location=$LOCATION \
-  --output json > deploy-output.json; then
-  echo "❌ Deployment failed. Check the output above for details."
-  exit 1
-fi
+  --output json > deploy-output.json
 
-if [ ! -s deploy-output.json ]; then
-  echo "❌ Deployment output file not found or is empty."
-  exit 1
-fi
+echo "📦 Extracting values from deployment output..."
+WEBAPP_NAME=$(jq -r '.properties.outputs.webAppName.value' deploy-output.json)
+APPINSIGHTS_CONNECTION_STRING=$(jq -r '.properties.outputs.appInsightsConnectionString.value' deploy-output.json)
 
-WEBAPP_NAME=$(jq -r '.properties.outputs.webAppName.value' deploy-output.json 2>/dev/null || echo "")
-if [ -z "$WEBAPP_NAME" ]; then
+if [ -z "$WEBAPP_NAME" ] || [ "$WEBAPP_NAME" == "null" ]; then
   echo "❌ Web App Name not found in deployment output."
-  cat deploy-output.json
   exit 1
 fi
 
-echo "✅ Infrastructure deployed. Web App Name: $WEBAPP_NAME"
-
-echo "🛠 Building and zipping web app code..."
-if [ ! -d "$DEPLOY_FOLDER" ]; then
-  echo "❌ Deployment folder '$DEPLOY_FOLDER' not found!"
+if [ -z "$APPINSIGHTS_CONNECTION_STRING" ] || [ "$APPINSIGHTS_CONNECTION_STRING" == "null" ]; then
+  echo "❌ Application Insights connection string not found in deployment output."
   exit 1
 fi
 
+echo "✅ Web App: $WEBAPP_NAME"
+echo "✅ Connection String retrieved."
+
+echo "📝 Creating .env file in $DEPLOY_FOLDER..."
+echo "APPLICATIONINSIGHTS_CONNECTION_STRING=$APPINSIGHTS_CONNECTION_STRING" > "$DEPLOY_FOLDER/.env"
+
+echo "🛠 Creating clean deployment package..."
 pushd "$DEPLOY_FOLDER" > /dev/null
 
-if [ -f "package.json" ]; then
-  echo "📦 Installing npm dependencies..."
-  npm install
-  if grep -q '"build"' package.json; then
-    echo "🔨 Running npm build..."
-    npm run build
-  fi
-fi
+zip -r "../$ZIP_FILE" index.js package.json .env public views > /dev/null
 
-zip -r ../"$ZIP_FILE" . > /dev/null
 popd > /dev/null
-echo "✅ Web app zipped into $ZIP_FILE"
 
-echo "📦 Deploying zip to Azure Web App..."
+echo "🚀 Deploying zip to Azure Web App..."
 az webapp deploy \
   --resource-group "$RESOURCE_GROUP" \
   --name "$WEBAPP_NAME" \
   --src-path "$ZIP_FILE" \
   --type zip
 
-echo "✅ App deployed! View it at: https://${WEBAPP_NAME}.azurewebsites.net"
+echo "✅ App deployed!"
+echo "🔗 Visit: https://${WEBAPP_NAME}.azurewebsites.net"
