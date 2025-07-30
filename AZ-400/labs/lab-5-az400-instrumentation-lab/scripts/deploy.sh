@@ -55,12 +55,14 @@ echo "APPLICATIONINSIGHTS_CONNECTION_STRING=$APPINSIGHTS_CONNECTION_STRING" > "$
 echo "🧹 Cleaning old zip..."
 rm -f "$ZIP_FILE"
 
-echo "🛠 Creating deployment package..."
+echo "📦 Installing production dependencies..."
 pushd "$DEPLOY_FOLDER" > /dev/null
+npm install --production
+popd > /dev/null
 
-# Include .env explicitly just in case dotfiles are ignored
-zip -r "../$ZIP_FILE" index.js package.json public views .env > /dev/null
-
+echo "📦 Creating deployment package (with node_modules)..."
+pushd "$DEPLOY_FOLDER" > /dev/null
+zip -r "../$ZIP_FILE" index.js package.json .env public views node_modules > /dev/null
 popd > /dev/null
 
 echo "🧩 Setting Node.js runtime to NODE|20-lts..."
@@ -68,7 +70,6 @@ az webapp config set \
   --resource-group "$RESOURCE_GROUP" \
   --name "$WEBAPP_NAME" \
   --linux-fx-version "NODE|20-lts" \
-  --reserved true \
   --output none
 
 echo "🔐 Setting environment variable in App Service..."
