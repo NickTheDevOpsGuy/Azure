@@ -77,7 +77,7 @@ KQL examples are available in `/queries/`:
 │   │   └── styles.css
 │   └── views
 │       └── index.html
-├── infra
+├── bicep
 │   ├── main.bicep
 │   ├── modules
 │   │   ├── app-insights.bicep
@@ -90,6 +90,9 @@ KQL examples are available in `/queries/`:
 │   ├── errors.kql
 │   ├── health-checks.kql
 │   └── homepage-requests.kql
+├── scripts
+│   ├── deploy.sh
+│   ├── cleanup.sh
 ```
 
 ## 🔧 Tools Used
