@@ -53,6 +53,7 @@ module webApp 'modules/webapp.bicep' = {
 }
 
 // Outputs for testing or CI/CD reference
+output appInsightsConnectionString string = appInsights.outputs.connectionString
 output appInsightsInstrumentationKey string = appInsights.outputs.instrumentationKey
 output logAnalyticsWorkspaceId string = logAnalytics.outputs.workspaceId
 output webAppName string = webApp.outputs.webAppName // ✅ Added for deploy.sh compatibility
