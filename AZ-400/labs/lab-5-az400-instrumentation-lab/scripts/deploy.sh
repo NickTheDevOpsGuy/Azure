@@ -71,9 +71,10 @@ popd > /dev/null
 echo "✅ Web app zipped into $ZIP_FILE"
 
 echo "📦 Deploying zip to Azure Web App..."
-az webapp deployment source config-zip \
+az webapp deploy \
   --resource-group "$RESOURCE_GROUP" \
   --name "$WEBAPP_NAME" \
-  --src "$ZIP_FILE"
+  --src-path "$ZIP_FILE" \
+  --type zip
 
 echo "✅ App deployed! View it at: https://${WEBAPP_NAME}.azurewebsites.net"

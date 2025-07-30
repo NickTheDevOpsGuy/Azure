@@ -3,7 +3,7 @@
   "location": null,
   "name": "lab5-full-deploy",
   "properties": {
-    "correlationId": "79b45317-ed99-4dde-a1e1-43aa6ffb1cd5",
+    "correlationId": "a275de12-fb9d-44a5-ae23-81fbc253a984",
     "debugSetting": null,
     "dependencies": [
       {
@@ -50,7 +50,7 @@
       }
     ],
     "diagnostics": null,
-    "duration": "PT50.8415657S",
+    "duration": "PT1M0.3072981S",
     "error": null,
     "mode": "Incremental",
     "onErrorDeployment": null,
@@ -75,7 +75,7 @@
     "outputs": {
       "appInsightsInstrumentationKey": {
         "type": "String",
-        "value": "69eef16f-d000-4e51-9dbd-8ba94395e9c8"
+        "value": "7c0a1b01-c4cb-4210-9115-28bb97d83036"
       },
       "logAnalyticsWorkspaceId": {
         "type": "String",
@@ -133,7 +133,7 @@
     "provisioningState": "Succeeded",
     "templateHash": "4335709323900450202",
     "templateLink": null,
-    "timestamp": "2025-07-30T20:11:47.933311+00:00",
+    "timestamp": "2025-07-30T20:16:45.746465+00:00",
     "validatedResources": null,
     "validationLevel": null
   },
