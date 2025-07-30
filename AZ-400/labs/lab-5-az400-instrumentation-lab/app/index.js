@@ -1,7 +1,7 @@
-// Load environment variables first
-require("dotenv").config();
+// Load environment variables
+require("dotenv").config({ path: require("path").resolve(__dirname, ".env") });
 
-// ✅ Application Insights must be initialized before other app code
+// ✅ Initialize Application Insights before anything else
 const appInsights = require("applicationinsights");
 const connStr = process.env.APPLICATIONINSIGHTS_CONNECTION_STRING;
 
@@ -10,27 +10,28 @@ if (!connStr) {
   process.exit(1);
 }
 
-// Proper setup and configuration
+console.log("✅ Env Loaded: APPLICATIONINSIGHTS_CONNECTION_STRING is set");
+
 appInsights
   .setup(connStr)
   .setAutoCollectRequests(true)
   .setAutoCollectPerformance(true)
   .setAutoCollectExceptions(true)
   .setAutoCollectDependencies(true)
-  .setAutoCollectConsole(true, true) // Capture console.log + console.error
+  .setAutoCollectConsole(true, true)
   .setUseDiskRetryCaching(true)
-  .setInternalLogging(false, true) // Optional: enable debug logs
+  .setInternalLogging(false, true)
   .start();
 
 const client = appInsights.defaultClient;
 
-// 🔧 App setup
+// 🔧 Express Setup
 const express = require("express");
 const os = require("os");
 const path = require("path");
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 
 // Serve static files
 app.use(express.static(path.join(__dirname, "public")));
@@ -66,7 +67,7 @@ app.get("/custom-metric", (req, res) => {
   res.send(`📊 Custom latency metric sent: ${latency.toFixed(2)}ms`);
 });
 
-// Start server
+// Start Server
 app.listen(port, () => {
-  console.log(`🚀 App running at http://localhost:${port}`);
+  console.log(`🚀 App running on http://localhost:${port}`);
 });

@@ -34,7 +34,7 @@ az deployment group create \
 
 echo "📦 Extracting values from deployment output..."
 WEBAPP_NAME=$(jq -r '.properties.outputs.webAppName.value' deploy-output.json)
-APPINSIGHTS_CONNECTION_STRING=$(jq -r '.properties.outputs.appInsightsConnectionString.value' deploy-output.json)
+APPINSIGHTS_CONNECTION_STRING=$(jq -r '.properties.outputs.appInsightsInstrumentationKey.value' deploy-output.json)
 
 if [ -z "$WEBAPP_NAME" ] || [ "$WEBAPP_NAME" == "null" ]; then
   echo "❌ Web App Name not found in deployment output."
@@ -52,19 +52,39 @@ echo "✅ Connection String retrieved."
 echo "📝 Creating .env file in $DEPLOY_FOLDER..."
 echo "APPLICATIONINSIGHTS_CONNECTION_STRING=$APPINSIGHTS_CONNECTION_STRING" > "$DEPLOY_FOLDER/.env"
 
-echo "🛠 Creating clean deployment package..."
+echo "🧹 Cleaning old zip..."
+rm -f "$ZIP_FILE"
+
+echo "🛠 Creating deployment package..."
 pushd "$DEPLOY_FOLDER" > /dev/null
 
-zip -r "../$ZIP_FILE" index.js package.json .env public views > /dev/null
+# Include .env explicitly just in case dotfiles are ignored
+zip -r "../$ZIP_FILE" index.js package.json public views .env > /dev/null
 
 popd > /dev/null
+
+echo "🧩 Setting Node.js runtime to NODE|20-lts..."
+az webapp config set \
+  --resource-group "$RESOURCE_GROUP" \
+  --name "$WEBAPP_NAME" \
+  --linux-fx-version "NODE|20-lts" \
+  --reserved true \
+  --output none
+
+echo "🔐 Setting environment variable in App Service..."
+az webapp config appsettings set \
+  --resource-group "$RESOURCE_GROUP" \
+  --name "$WEBAPP_NAME" \
+  --settings APPLICATIONINSIGHTS_CONNECTION_STRING="$APPINSIGHTS_CONNECTION_STRING" \
+  --output none
 
 echo "🚀 Deploying zip to Azure Web App..."
 az webapp deploy \
   --resource-group "$RESOURCE_GROUP" \
   --name "$WEBAPP_NAME" \
   --src-path "$ZIP_FILE" \
-  --type zip
+  --type zip \
+  --output none
 
 echo "✅ App deployed!"
 echo "🔗 Visit: https://${WEBAPP_NAME}.azurewebsites.net"
