@@ -1,0 +1,89 @@
+name: Deploy Lab 5 - Instrumentation Lab
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  RESOURCE_GROUP: NickClarkRG
+  LOCATION: westus
+  ENVIRONMENT: dev
+  ZIP_FILE: webapp.zip
+  DEPLOY_FOLDER: app
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: 🔐 Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: 📁 Create Resource Group
+        run: |
+          az group create \
+            --name "$RESOURCE_GROUP" \
+            --location "$LOCATION"
+
+      - name: 📦 Deploy Bicep Infra
+        run: |
+          az deployment group create \
+            --name lab5-full-deploy \
+            --resource-group "$RESOURCE_GROUP" \
+            --template-file bicep/main.bicep \
+            --parameters environment=$ENVIRONMENT location=$LOCATION \
+            --output json > deploy-output.json
+
+      - name: 🧪 Extract Deployment Outputs
+        id: extract
+        run: |
+          echo "WEBAPP_NAME=$(jq -r '.properties.outputs.webAppName.value' deploy-output.json)" >> "$GITHUB_ENV"
+          echo "APPINSIGHTS_CONNECTION_STRING=$(jq -r '.properties.outputs.appInsightsConnectionString.value' deploy-output.json)" >> "$GITHUB_ENV"
+
+      - name: 📝 Create .env File
+        run: echo "APPLICATIONINSIGHTS_CONNECTION_STRING=$APPINSIGHTS_CONNECTION_STRING" > $DEPLOY_FOLDER/.env
+
+      - name: 📦 Install Production Deps
+        run: |
+          cd $DEPLOY_FOLDER
+          npm install --omit=dev --silent
+
+      - name: 📦 Zip App for Deployment
+        run: |
+          cd $DEPLOY_FOLDER
+          zip -r ../$ZIP_FILE index.js package.json .env public views node_modules
+
+      - name: 🔧 Set Node.js Version on App
+        run: |
+          az webapp config set \
+            --resource-group "$RESOURCE_GROUP" \
+            --name "$WEBAPP_NAME" \
+            --linux-fx-version "NODE|20-lts"
+
+      - name: 🔐 Set App Settings (App Insights)
+        run: |
+          az webapp config appsettings set \
+            --resource-group "$RESOURCE_GROUP" \
+            --name "$WEBAPP_NAME" \
+            --settings APPLICATIONINSIGHTS_CONNECTION_STRING="$APPINSIGHTS_CONNECTION_STRING"
+
+      - name: 🚀 Deploy Zip to Web App
+        run: |
+          az webapp deploy \
+            --resource-group "$RESOURCE_GROUP" \
+            --name "$WEBAPP_NAME" \
+            --src-path "$ZIP_FILE" \
+            --type zip
+
+      - name: ✅ Done
+        run: echo "App deployed to: https://${WEBAPP_NAME}.azurewebsites.net"
