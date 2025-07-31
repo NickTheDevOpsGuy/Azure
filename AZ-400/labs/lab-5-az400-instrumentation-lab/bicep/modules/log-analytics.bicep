@@ -7,13 +7,13 @@ param location string
 resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2021-06-01' = {
   name: workspaceName
   location: location
-  sku: {
-    name: 'PerGB2018'
-  }
   properties: {
     retentionInDays: 30
+    features: {
+      enableLogAccessUsingOnlyResourcePermissions: true
+    }
   }
 }
 
-output workspaceResourceId string = logAnalytics.id
-output workspaceId string = logAnalytics.name
+@description('The full resource ID of the Log Analytics workspace')
+output workspaceId string = logAnalytics.id

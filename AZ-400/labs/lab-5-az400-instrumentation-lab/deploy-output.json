@@ -1,0 +1,147 @@
+{
+  "id": "/subscriptions/4086fef6-d097-4327-a163-afb6f9e64e89/resourceGroups/NickClarkRG/providers/Microsoft.Resources/deployments/lab5-full-deploy",
+  "location": null,
+  "name": "lab5-full-deploy",
+  "properties": {
+    "correlationId": "392c1383-a69c-42e5-a772-e06754eb5ca8",
+    "debugSetting": null,
+    "dependencies": [
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/4086fef6-d097-4327-a163-afb6f9e64e89/resourceGroups/NickClarkRG/providers/Microsoft.Resources/deployments/logAnalytics",
+            "resourceGroup": "NickClarkRG",
+            "resourceName": "logAnalytics",
+            "resourceType": "Microsoft.Resources/deployments"
+          },
+          {
+            "apiVersion": "2022-09-01",
+            "id": "/subscriptions/4086fef6-d097-4327-a163-afb6f9e64e89/resourceGroups/NickClarkRG/providers/Microsoft.Resources/deployments/logAnalytics",
+            "resourceGroup": "NickClarkRG",
+            "resourceName": "logAnalytics",
+            "resourceType": "Microsoft.Resources/deployments"
+          }
+        ],
+        "id": "/subscriptions/4086fef6-d097-4327-a163-afb6f9e64e89/resourceGroups/NickClarkRG/providers/Microsoft.Resources/deployments/appInsights",
+        "resourceGroup": "NickClarkRG",
+        "resourceName": "appInsights",
+        "resourceType": "Microsoft.Resources/deployments"
+      },
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/4086fef6-d097-4327-a163-afb6f9e64e89/resourceGroups/NickClarkRG/providers/Microsoft.Resources/deployments/appInsights",
+            "resourceGroup": "NickClarkRG",
+            "resourceName": "appInsights",
+            "resourceType": "Microsoft.Resources/deployments"
+          },
+          {
+            "apiVersion": "2022-09-01",
+            "id": "/subscriptions/4086fef6-d097-4327-a163-afb6f9e64e89/resourceGroups/NickClarkRG/providers/Microsoft.Resources/deployments/appInsights",
+            "resourceGroup": "NickClarkRG",
+            "resourceName": "appInsights",
+            "resourceType": "Microsoft.Resources/deployments"
+          }
+        ],
+        "id": "/subscriptions/4086fef6-d097-4327-a163-afb6f9e64e89/resourceGroups/NickClarkRG/providers/Microsoft.Resources/deployments/webApp-dev",
+        "resourceGroup": "NickClarkRG",
+        "resourceName": "webApp-dev",
+        "resourceType": "Microsoft.Resources/deployments"
+      }
+    ],
+    "diagnostics": null,
+    "duration": "PT1M1.1892372S",
+    "error": null,
+    "mode": "Incremental",
+    "onErrorDeployment": null,
+    "outputResources": [
+      {
+        "id": "/subscriptions/4086fef6-d097-4327-a163-afb6f9e64e89/resourceGroups/NickClarkRG/providers/Microsoft.Insights/components/appinsights-dev",
+        "resourceGroup": "NickClarkRG"
+      },
+      {
+        "id": "/subscriptions/4086fef6-d097-4327-a163-afb6f9e64e89/resourceGroups/NickClarkRG/providers/Microsoft.OperationalInsights/workspaces/log-dev",
+        "resourceGroup": "NickClarkRG"
+      },
+      {
+        "id": "/subscriptions/4086fef6-d097-4327-a163-afb6f9e64e89/resourceGroups/NickClarkRG/providers/Microsoft.Web/serverfarms/appserviceplan-dev-4nje3z32dovyg",
+        "resourceGroup": "NickClarkRG"
+      },
+      {
+        "id": "/subscriptions/4086fef6-d097-4327-a163-afb6f9e64e89/resourceGroups/NickClarkRG/providers/Microsoft.Web/sites/webapp-dev-4nje3z32dovyg",
+        "resourceGroup": "NickClarkRG"
+      }
+    ],
+    "outputs": {
+      "appInsightsConnectionString": {
+        "type": "String",
+        "value": "InstrumentationKey=ee876d89-ec82-4f54-bcfc-454ffb84f6c3"
+      },
+      "appInsightsInstrumentationKey": {
+        "type": "String",
+        "value": "ee876d89-ec82-4f54-bcfc-454ffb84f6c3"
+      },
+      "logAnalyticsWorkspaceId": {
+        "type": "String",
+        "value": "/subscriptions/4086fef6-d097-4327-a163-afb6f9e64e89/resourceGroups/NickClarkRG/providers/Microsoft.OperationalInsights/workspaces/log-dev"
+      },
+      "webAppName": {
+        "type": "String",
+        "value": "webapp-dev-4nje3z32dovyg"
+      }
+    },
+    "parameters": {
+      "environment": {
+        "type": "String",
+        "value": "dev"
+      },
+      "location": {
+        "type": "String",
+        "value": "westus"
+      },
+      "uniqueStringSuffix": {
+        "type": "String",
+        "value": "4nje3z32dovyg"
+      },
+      "webAppName": {
+        "type": "String",
+        "value": "webapp-dev-4nje3z32dovyg"
+      }
+    },
+    "parametersLink": null,
+    "providers": [
+      {
+        "id": null,
+        "namespace": "Microsoft.Resources",
+        "providerAuthorizationConsentState": null,
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              null
+            ],
+            "properties": null,
+            "resourceType": "deployments",
+            "zoneMappings": null
+          }
+        ]
+      }
+    ],
+    "provisioningState": "Succeeded",
+    "templateHash": "15779218570126992395",
+    "templateLink": null,
+    "timestamp": "2025-07-31T14:41:25.820406+00:00",
+    "validatedResources": null,
+    "validationLevel": null
+  },
+  "resourceGroup": "NickClarkRG",
+  "tags": null,
+  "type": "Microsoft.Resources/deployments"
+}
