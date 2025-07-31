@@ -3,7 +3,7 @@
   "location": null,
   "name": "lab5-full-deploy",
   "properties": {
-    "correlationId": "a90c4109-6695-4a7f-aede-90187de3115f",
+    "correlationId": "cbf10885-6139-47b3-b264-ea1bf77ad016",
     "debugSetting": null,
     "dependencies": [
       {
@@ -49,7 +49,7 @@
         "resourceType": "Microsoft.Resources/deployments"
       }
     ],
-    "duration": "PT1M5.3909977S",
+    "duration": "PT52.5114596S",
     "error": null,
     "mode": "Incremental",
     "onErrorDeployment": null,
@@ -74,11 +74,11 @@
     "outputs": {
       "appInsightsConnectionString": {
         "type": "String",
-        "value": "InstrumentationKey=f85624c4-a23a-4b90-9092-ecd735380baf"
+        "value": "InstrumentationKey=701d3672-a236-46be-b9da-9b04c3517c10"
       },
       "appInsightsInstrumentationKey": {
         "type": "String",
-        "value": "f85624c4-a23a-4b90-9092-ecd735380baf"
+        "value": "701d3672-a236-46be-b9da-9b04c3517c10"
       },
       "logAnalyticsWorkspaceId": {
         "type": "String",
@@ -136,7 +136,7 @@
     "provisioningState": "Succeeded",
     "templateHash": "18272197513257422185",
     "templateLink": null,
-    "timestamp": "2025-07-30T23:46:54.097726+00:00",
+    "timestamp": "2025-07-31T00:00:08.427430+00:00",
     "validatedResources": null
   },
   "resourceGroup": "NickClarkRG",
