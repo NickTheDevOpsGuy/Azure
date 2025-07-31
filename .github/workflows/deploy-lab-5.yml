@@ -87,4 +87,4 @@ jobs:
 
       - name: ✅ Done
         run: echo "App deployed to: https://${WEBAPP_NAME}.azurewebsites.net"
-        
+
