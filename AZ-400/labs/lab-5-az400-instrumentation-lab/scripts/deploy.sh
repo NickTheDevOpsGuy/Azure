@@ -75,6 +75,13 @@ az webapp config set \
   --linux-fx-version "NODE|20-lts" \
   --output none
 
+echo "🛠️ Setting startup command to launch Node app..."
+az webapp config set \
+  --resource-group "$RESOURCE_GROUP" \
+  --name "$WEBAPP_NAME" \
+  --startup-file "node index.js" \
+  --output none
+
 echo "🔐 Setting environment variable in App Service..."
 az webapp config appsettings set \
   --resource-group "$RESOURCE_GROUP" \

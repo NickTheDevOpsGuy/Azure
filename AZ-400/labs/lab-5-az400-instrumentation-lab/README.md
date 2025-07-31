@@ -1,7 +1,22 @@
 # AZ-400 Instrumentation Lab
 
 ## 📝 Description
+
 Brief description of what this project does and who it's for.
+
+## 📸 Screenshots
+
+### Home Page
+![Home Page](docs/screenshots/home-page.png)
+
+### Simulated Error Logged
+![Simulated Error](docs/screenshots/simulate-error.png)
+
+### Application Insights Metrics
+![Metrics](docs/screenshots/app-insights-metrics.png)
+
+### KQL Query
+![Metrics](docs/screenshots/kql-query.png)
 
 ## 🧪 GitHub Actions CI/CD
 
@@ -10,7 +25,7 @@ This repo includes a GitHub Actions workflow that deploys the entire solution—
 📂 Workflow File:
 
 ```bash 
-deploy-lab5.yml
+.github/workflows/deploy-lab5.yml
 ```
 
 📌 What it does:
@@ -40,7 +55,7 @@ az deployment group create \
 
 Note the outputs: `appInsightsInstrumentationKey` and `logAnalyticsWorkspaceId`.
 
-### 💻 Set Up the App
+### 💻 Run the App Locally
 
 ```bash
 cd app
@@ -58,11 +73,9 @@ Then visit:
 
 ## 📊 Queries
 KQL examples are available in `/queries/`:
-- Homepage hits
-- Exceptions
-- Health checks
-- Custom metrics
-
+- homepage-requests.kql – homepage traffic
+- errors.kql – application exceptions
+- health-checks.kql – system uptime checks
 
 ## 📁 Project Structure
 ```
@@ -84,21 +97,32 @@ KQL examples are available in `/queries/`:
 │   │   ├── log-analytics.bicep
 │   │   └── webapp.bicep
 │   └── parameters.dev.json
+├── deploy-output.json
+├── docs
+│   ├── .DS_Store
+│   └── screenshots
+│       ├── .DS_Store
+│       ├── app-insights-metrics.png
+│       ├── home-page.png
+│       ├── kql-query.png
+│       └── simulate-error.png
 ├── package-lock.json
 ├── queries
-│   ├── custom-metrics.kql
 │   ├── errors.kql
 │   ├── health-checks.kql
 │   └── homepage-requests.kql
+├── README.md
 ├── scripts
-│   ├── deploy.sh
 │   ├── cleanup.sh
+│   └── deploy.sh
 ```
 
 ## 🔧 Tools Used
 - Azure Bicep
 - Application Insights
 - Log Analytics
+- GitHub Actions
+- Node.js + Express
 
 ## 🙋‍♂️ About the Author
 Built with 💻 by [Nicholas Clark](https://www.linkedin.com/in/nickdoesdevops)

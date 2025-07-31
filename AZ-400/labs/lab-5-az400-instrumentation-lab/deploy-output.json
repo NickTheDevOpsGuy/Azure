@@ -3,7 +3,7 @@
   "location": null,
   "name": "lab5-full-deploy",
   "properties": {
-    "correlationId": "cbf10885-6139-47b3-b264-ea1bf77ad016",
+    "correlationId": "392c1383-a69c-42e5-a772-e06754eb5ca8",
     "debugSetting": null,
     "dependencies": [
       {
@@ -49,7 +49,8 @@
         "resourceType": "Microsoft.Resources/deployments"
       }
     ],
-    "duration": "PT52.5114596S",
+    "diagnostics": null,
+    "duration": "PT1M1.1892372S",
     "error": null,
     "mode": "Incremental",
     "onErrorDeployment": null,
@@ -74,11 +75,11 @@
     "outputs": {
       "appInsightsConnectionString": {
         "type": "String",
-        "value": "InstrumentationKey=701d3672-a236-46be-b9da-9b04c3517c10"
+        "value": "InstrumentationKey=ee876d89-ec82-4f54-bcfc-454ffb84f6c3"
       },
       "appInsightsInstrumentationKey": {
         "type": "String",
-        "value": "701d3672-a236-46be-b9da-9b04c3517c10"
+        "value": "ee876d89-ec82-4f54-bcfc-454ffb84f6c3"
       },
       "logAnalyticsWorkspaceId": {
         "type": "String",
@@ -134,10 +135,11 @@
       }
     ],
     "provisioningState": "Succeeded",
-    "templateHash": "18272197513257422185",
+    "templateHash": "15779218570126992395",
     "templateLink": null,
-    "timestamp": "2025-07-31T00:00:08.427430+00:00",
-    "validatedResources": null
+    "timestamp": "2025-07-31T14:41:25.820406+00:00",
+    "validatedResources": null,
+    "validationLevel": null
   },
   "resourceGroup": "NickClarkRG",
   "tags": null,

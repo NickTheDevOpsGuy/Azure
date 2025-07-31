@@ -1,0 +1,4 @@
+requests
+| where url endswith "/"
+| project timestamp, name, url, resultCode, duration, success
+| order by timestamp desc
