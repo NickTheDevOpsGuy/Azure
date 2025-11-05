@@ -54,3 +54,12 @@ Azure/
 │   ├── cleanup.sh        
 │   └── deploy.sh
 ```
+
+---
+
+## 🦝 Built by NickDoesDevOps
+
+Created with ☕, curiosity, and a touch of chaos by [Nicholas Clark](https://www.linkedin.com/in/nickdoesdevops).  
+Follow the journey → [GitHub](https://github.com/NickTheDevOpsGuy) • [LinkedIn](https://www.linkedin.com/in/nickdoesdevops)
+
+🏷 #NickDoesDevOps • #LearningInPublic • #BuiltInPublic

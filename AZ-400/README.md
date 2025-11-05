@@ -42,13 +42,9 @@ This isn’t about just passing the exam — it’s about *mastering the craft*.
 
 ---
 
-## 💬 Let’s Connect
+## 🦝 Built by NickDoesDevOps
 
-Feel free to follow along, clone, or contribute ideas:
-- 📧 nicholas.a.clark@outlook.com
-- 🧑‍💻 [GitHub: @NickTheDevOpsGuy](https://github.com/NickTheDevOpsGuy)
-- 🔗 [LinkedIn: Nicholas A. Clark](https://www.linkedin.com/in/nicholas-a-clark/)
+Created with ☕, curiosity, and a touch of chaos by [Nicholas Clark](https://www.linkedin.com/in/nickdoesdevops).  
+Follow the journey → [GitHub](https://github.com/NickTheDevOpsGuy) • [LinkedIn](https://www.linkedin.com/in/nickdoesdevops)
 
----
-
-> “World Domination isn’t just a goal. It’s a pipeline.” — Me, probably.
+🏷 #NickDoesDevOps • #LearningInPublic • #BuiltInPublic

@@ -50,6 +50,8 @@ Azure/
 │   └── deploy.sh
 ```
 
+---
+
 ## 🛠️ Deployment Steps
 1. Set your variables:
    ```bash
@@ -58,3 +60,12 @@ Azure/
    STORAGE_NAME=<unique-storage-name>
    LOG_ANALYTICS_NAME=<unique-log-name>
    ```
+
+---
+
+## 🦝 Built by NickDoesDevOps
+
+Created with ☕, curiosity, and a touch of chaos by [Nicholas Clark](https://www.linkedin.com/in/nickdoesdevops).  
+Follow the journey → [GitHub](https://github.com/NickTheDevOpsGuy) • [LinkedIn](https://www.linkedin.com/in/nickdoesdevops)
+
+🏷 #NickDoesDevOps • #LearningInPublic • #BuiltInPublic

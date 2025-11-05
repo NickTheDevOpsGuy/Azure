@@ -130,17 +130,9 @@ Storage Account (lab8storagexxxx)
 
 ---
 
-## 🙋‍♂️ About the Author
+## 🦝 Built by NickDoesDevOps
 
-Built with 💻 by [Nicholas Clark](https://www.linkedin.com/in/nickdoesdevops)
+Created with ☕, curiosity, and a touch of chaos by [Nicholas Clark](https://www.linkedin.com/in/nickdoesdevops).  
+Follow the journey → [GitHub](https://github.com/NickTheDevOpsGuy) • [LinkedIn](https://www.linkedin.com/in/nickdoesdevops)
 
-- Follow the journey: #NickDoesDevOPS
-
-🧠 #NickDoesDevOps
-🚀 #LearningInPublic
-🔧 #WorldDominations
-
-- GitHub: [NickTheDevOpsGuy](https://github.com/NickTheDevOpsGuy)
-
-## 📄 License
-MIT
+🏷 #NickDoesDevOps • #LearningInPublic • #BuiltInPublic

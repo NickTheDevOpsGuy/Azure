@@ -43,6 +43,8 @@ This repo includes a GitHub Actions workflow that deploys the entire solution—
 - Node.js v18+ installed
 - Azure subscription
 
+---
+
 ### 🔧 Deploy Infrastructure
 Run the following to deploy App Insights and Log Analytics workspace:
 
@@ -71,11 +73,15 @@ Then visit:
 - `/simulate-error` – triggers an exception
 - `/custom-metric` – sends random latency metric
 
+---
+
 ## 📊 Queries
 KQL examples are available in `/queries/`:
 - homepage-requests.kql – homepage traffic
 - errors.kql – application exceptions
 - health-checks.kql – system uptime checks
+
+---
 
 ## 📁 Project Structure
 ```
@@ -117,6 +123,8 @@ KQL examples are available in `/queries/`:
 │   └── deploy.sh
 ```
 
+---
+
 ## 🔧 Tools Used
 - Azure Bicep
 - Application Insights
@@ -124,11 +132,11 @@ KQL examples are available in `/queries/`:
 - GitHub Actions
 - Node.js + Express
 
-## 🙋‍♂️ About the Author
-Built with 💻 by [Nicholas Clark](https://www.linkedin.com/in/nickdoesdevops)
+---
 
-- Follow the journey: #NickDoesDevOPS
-- GitHub: [NickTheDevOpsGuy](https://github.com/NickTheDevOpsGuy)
+## 🦝 Built by NickDoesDevOps
 
-## 📄 License
-MIT
+Created with ☕, curiosity, and a touch of chaos by [Nicholas Clark](https://www.linkedin.com/in/nickdoesdevops).  
+Follow the journey → [GitHub](https://github.com/NickTheDevOpsGuy) • [LinkedIn](https://www.linkedin.com/in/nickdoesdevops)
+
+🏷 #NickDoesDevOps • #LearningInPublic • #BuiltInPublic
