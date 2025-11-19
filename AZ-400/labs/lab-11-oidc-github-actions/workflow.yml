@@ -27,9 +27,3 @@ jobs:
 
       - name: List resource groups
         run: az group list -o table
-      
-      - name: Deploy Bicep
-        run: |
-          az deployment group create \
-            --resource-group rg-oidc-lab \
-            --template-file infra/main.bicep
