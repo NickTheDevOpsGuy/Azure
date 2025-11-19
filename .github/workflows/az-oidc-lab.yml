@@ -32,4 +32,4 @@ jobs:
         run: |
           az deployment group create \
             --resource-group NicksResourceGroup \
-            --template-file Azure/AZ-400/labs/lab-11-oidc-github-actions/infra/main.bicep
+            --template-file AZ-400/labs/lab-11-oidc-github-actions/infra/main.bicep
