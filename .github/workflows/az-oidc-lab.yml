@@ -33,3 +33,9 @@ jobs:
           az deployment group create \
             --resource-group NicksResourceGroup \
             --template-file AZ-400/labs/lab-11-oidc-github-actions/infra/main.bicep
+
+      - name: Cleanup test RG
+        run: |
+          az group delete \
+            --name NicksResourceGroup \
+            --yes --no-wait
