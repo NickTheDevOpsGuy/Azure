@@ -31,5 +31,5 @@ jobs:
       - name: Deploy Bicep
         run: |
           az deployment group create \
-            --resource-group rg-oidc-lab \
+            --resource-group NicksResourceGroup \
             --template-file infra/main.bicep
